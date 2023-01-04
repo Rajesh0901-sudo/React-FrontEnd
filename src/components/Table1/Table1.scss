@@ -43,8 +43,9 @@
             font-family: none;
             font-size: 15px;
         }
-        
-
+        textarea:focus{
+            border: none;
+        }
     }
 
     .btn{

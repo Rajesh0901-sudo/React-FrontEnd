@@ -1,0 +1,66 @@
+export const result1Data = [
+    {
+        index:1,
+        label:"Allwoed days",
+        desc:"in days",
+        type:"number",
+        value:"",
+    },
+    {
+        index:2,
+        label:"Used days",
+        desc:"in days",
+        type:"number",
+        value:"",
+    },
+    {
+        index:3,
+        label:"Garce time",
+        desc:"in days",
+        type:"number",
+        value:"",
+    },
+    {
+        index:4,
+        label:"Balance days",
+        desc:"in days",
+        type:"number",
+        value:"",
+    },
+    {
+        index:5,
+        label:"Previous claim",
+        desc:"+/-",
+        type:"number",
+        value:"",
+    },
+    {
+        index:6,
+        label:"Demurrage amt",
+        desc:"+/-",
+        type:"number",
+        value:"",
+    },
+    {
+        index:7,
+        label:"Despatch amount	",
+        desc:"+/-",
+        type:"number",
+        value:"",
+    },
+    {
+        index:8,
+        label:"Other tax/com.	",
+        desc:"+/-",
+        type:"number",
+        value:"",
+    },
+    {
+        index:9,
+        label:"Final Net amount",
+        desc:"+/-",
+        type:"number",
+        value:"",
+    },
+
+]
