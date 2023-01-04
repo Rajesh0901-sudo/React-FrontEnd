@@ -17,12 +17,26 @@ import "./styles/custom.scss";
 import "./styles/context-menu.scss";
 
 function App() {
+  const [form, setFormData] = React.useState({});
+  const onchange = (event, formula, out, args, index) => {
+    console.log(event.target.value);
+    console.log(event.target.name);
+    let myNewForm = { ...form };
+    myNewForm[event.target.name] = event.target.value;
+    if (formula) {
+      myNewForm[out + index] = formula(myNewForm[args[0] + index], args[1]);
+    }
+    setFormData(myNewForm);
+    console.log(myNewForm);
+  };
   return (
     <div className="App">
-      <TopNavBar />
-      <Table1 />
-      <Table2 />
-      <UiTransaction />
+      <div className="card">
+        <TopNavBar />
+        <Table1 />
+        <Table2 form={form} onchange={onchange} />
+        <Table3 />
+      </div>
     </div>
   );
 }
