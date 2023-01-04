@@ -1,6 +1,6 @@
 function App() {
     return (
-      <div className="App">
+      <div className="secondDiv">
         <h1>My components 2</h1>
       </div>
     );

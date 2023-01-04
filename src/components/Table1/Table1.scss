@@ -1,10 +1,19 @@
 .table1-div{
-    height:300px;
-    width: 95%;;
-    margin-top: 50px;
+    width: 96%;;
+    margin-top: 20px;
     margin-right: auto;
     margin-left:auto;
 
+    .card-title{
+        margin-bottom: 0.75rem;
+        color: white;
+        height: 51px;
+        display: flex;
+        background: #288ba2;
+        align-items: center;
+        justify-content: center;
+    }
+    
     .grid-container {
         display: grid;
         grid-template-columns: auto auto auto;
@@ -18,18 +27,30 @@
       }
 
     .label{
-
-
+        width:95%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .label-div{
+            display: inline;
+        }
 
         .input{
             min-height: 40px;
-            margin-left: 60px;
-            text-align: center;
+            min-width: 150px;
+            border: none;
+            border-bottom: 2px solid #cac3c3;
+            font-family: none;
+            font-size: 15px;
         }
+        
+
     }
 
     .btn{
         margin-top: 50px;
+        width: 100px;
+        background: #288ba2;
     }
 
 }

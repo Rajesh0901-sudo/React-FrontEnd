@@ -1,4 +1,4 @@
-export const data = [
+export const Data = [
     {
         index:1,
         label:"Vessel name",
@@ -25,7 +25,8 @@ export const data = [
         label:"Party type",
         desc:"alphanuemric",
         type:"dropDown",
-        value:["Charterer","Owner","Supplier","Receiver"],
+        value:"",
+        options:["Charterer","Owner","Supplier","Receiver"],
     },
     {
         index:5,
@@ -74,14 +75,16 @@ export const data = [
         label:"Status",
         desc:"alphanuemric",
         type:"dropDown",
-        value:["inprocess", "settled", "dispute"],
+        value:"",
+        options:["inprocess", "settled", "dispute"],
     },
     {
         index:12,
         label:"Calculation Type",
         desc:"alphanuemric",
         type:"dropDown",
-        value:["Deduction","Time counting"],
+        value:"",
+        options:["Deduction","Time counting"],
     },
     {
         index:13,
@@ -95,7 +98,8 @@ export const data = [
         label:"Invoice",
         desc:"alphanuemric",
         type:"dropDown",
-        value:["Payable","Receivable"],
+        value:"",
+        options:["Payable","Receivable"],
     },
 
 ]	
