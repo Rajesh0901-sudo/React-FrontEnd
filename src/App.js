@@ -1,5 +1,5 @@
 import './App.css';
-import { Button } from 'antd';
+import React from 'react';
 
 import Table1 from './components/Table1/Table1';
 import Table2 from './components/Table2/Table2';
@@ -31,12 +31,9 @@ function App() {
   };
   return (
     <div className="App">
-      <div className="card">
         <TopNavBar />
         <Table1 />
         <Table2 form={form} onchange={onchange} />
-        <Table3 />
-      </div>
     </div>
   );
 }

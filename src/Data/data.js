@@ -26,7 +26,25 @@ export const Data = [
         desc:"alphanuemric",
         type:"dropDown",
         value:"",
-        options:["Charterer","Owner","Supplier","Receiver"],
+        options:[
+            {   
+                label:"Charterer",
+                value:"charterer",
+            },
+            {   
+                label:"Owner",
+                value:"owner",
+            },
+            {   
+                label:"Supplier",
+                value:"supplier",
+            },
+            {   
+                label:"Receiver",
+                value:"receiver",
+            }
+        ]
+        
     },
     {
         index:5,
@@ -76,7 +94,20 @@ export const Data = [
         desc:"alphanuemric",
         type:"dropDown",
         value:"",
-        options:["inprocess", "settled", "dispute"],
+        options:[
+            {
+                label:"Inprocess",
+                value:"inprocess"
+            },
+            {
+                label:"Settled",
+                value:"settled"
+            },
+            {
+                label:"Dispute",
+                value:"dispute"
+            } 
+        ]
     },
     {
         index:12,
@@ -84,7 +115,17 @@ export const Data = [
         desc:"alphanuemric",
         type:"dropDown",
         value:"",
-        options:["Deduction","Time counting"],
+        options:[
+            {
+                value:"deduction",
+                label:"Deduction"
+            },
+            {
+                value:"timeCounting",
+                label:"Time Counting"
+            }
+            
+        ]
     },
     {
         index:13,
@@ -99,7 +140,16 @@ export const Data = [
         desc:"alphanuemric",
         type:"dropDown",
         value:"",
-        options:["Payable","Receivable"],
+        options:[
+            {
+                label:"Payable",
+                value:"payable"
+            },
+            {
+                label:"Receivable",
+                value:"receivable"
+            }
+        ]
     },
 
 ]	
