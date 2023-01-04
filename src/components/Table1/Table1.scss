@@ -1,0 +1,35 @@
+.table1-div{
+    height:300px;
+    width: 95%;;
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left:auto;
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+      }
+      .grid-item {
+        font-size: 14px;      
+        margin: 5px;
+
+        span{
+        }
+      }
+
+    .label{
+
+
+
+        .input{
+            min-height: 40px;
+            margin-left: 60px;
+            text-align: center;
+        }
+    }
+
+    .btn{
+        margin-top: 50px;
+    }
+
+}
