@@ -16,6 +16,8 @@ import "./styles/vendors.scss";
 import "./styles/custom.scss";
 import "./styles/context-menu.scss";
 import { data } from "./components/Table3/Constants";
+import Table4 from "./components/Table4/Table4";
+import { tableData } from "./components/Table4/Constants";
 
 function App() {
   const [form, setFormData] = React.useState({});
@@ -45,6 +47,7 @@ function App() {
   React.useEffect(() => {
     let myNewForm = { ...form };
     myNewForm["portActivityTable"] = [];
+    myNewForm["resultActivityTable"] = [];
     let obj = {};
     data.forEach((d, index) => {
       obj[d.key] = "";
@@ -71,6 +74,9 @@ function App() {
   const onChangeTable3 = function (index, e) {
     try {
       let myNewForm = { ...form };
+      if (e.target.name == "checked") {
+        addRowtotable4(index);
+      }
       myNewForm["portActivityTable"][index][e.target.name] = e.target.value;
       myNewForm["portActivityTable"].sort(function (a, b) {
         return -(
@@ -82,6 +88,29 @@ function App() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const addRowtotable4 = function (index) {
+    let myNewForm = { ...form };
+    let obj = {};
+    tableData.forEach((data) => {
+      obj[data.key] = "";
+    });
+    obj["fromDate"] = form["portActivityTable"][index]["fromDate"];
+    myNewForm["resultActivityTable"].push(obj);
+    myNewForm["resultActivityTable"].sort(function (a, b) {
+      return -(
+        new Date(b.fromDate + " " + b.fromDatetime) -
+        new Date(a.fromDate + " " + a.fromDatetime)
+      );
+    });
+    // myNewForm["resultActivityTable"].map((data, index) => {
+    //   data[index]["toDate"] =
+    //     myNewForm["resultActivityTable"].length > index + 1
+    //       ? myNewForm["resultActivityTable"][index + 1]["fromDate"]
+    //       : "22/02/2001";
+    // });
+    setFormData(myNewForm);
   };
 
   const addRow = function () {
@@ -105,6 +134,7 @@ function App() {
         onchange={onChangeTable3}
         form={form}
       ></UiTransaction>
+      <Table4 form={form}></Table4>
     </div>
   );
 }
