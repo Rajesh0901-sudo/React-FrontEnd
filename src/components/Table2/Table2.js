@@ -1,7 +1,10 @@
 import React from "react";
+import { Select } from "antd";
+
 import { cpDetailsdata, data } from "./Constants";
 import "./Table2.scss";
 import { Radio } from "antd";
+const { Option } = Select;
 
 function App(props) {
   const [state, setState] = React.useState([]);
@@ -60,19 +63,31 @@ function App(props) {
                       <tr>
                         {data.map((res, i) => (
                           <td>
-                            <input
-                              value={props.form[res.key + index]}
-                              name={res.key + index}
-                              onChange={(e) => {
-                                props.onchange(
-                                  e,
-                                  res.formula,
-                                  res.outputField,
-                                  res.args,
-                                  index
-                                );
-                              }}
-                            />
+                            {res.type == "dropdown" ? (
+                              <Select defaultValue="">
+                                {res.options.map((opt) => (
+                                  <Option value={opt.factor} label={opt.Code}>
+                                    <div className="demo-option-label-item">
+                                      {opt.Code}
+                                    </div>
+                                  </Option>
+                                ))}
+                              </Select>
+                            ) : (
+                              <input
+                                value={props.form[res.key + index]}
+                                name={res.key + index}
+                                onChange={(e) => {
+                                  props.onchange(
+                                    e,
+                                    res.formula,
+                                    res.outputField,
+                                    res.args,
+                                    index
+                                  );
+                                }}
+                              />
+                            )}
                           </td>
                         ))}
                       </tr>
