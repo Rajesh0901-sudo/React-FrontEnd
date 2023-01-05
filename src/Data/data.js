@@ -1,4 +1,4 @@
-export const Data = [
+export const data = [
     {
         index:1,
         label:"Vessel name",

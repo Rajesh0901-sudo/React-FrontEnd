@@ -1,12 +1,14 @@
 .secondDiv{
-
+    min-height: 50vh;
+    background: white;
     .button-div{
         margin-left: 30px;
         margin-bottom: -26px;
         margin-top: 10px;
         .ant-radio-button-wrapper{
-            width: 150px;
-            height: 40px;
+            width: 145px;
+            height: 33px;
+            margin-top: 50px;
             font-size: 18px;
             &-checked{
                 background: #288ba2;
@@ -16,7 +18,7 @@
         }
     }
     .card{
-        width: 96%;
+        width: 76%;
         margin-top: 20px;
         margin-right: auto;
         margin-left: auto;
@@ -41,7 +43,8 @@
             td,th{
                 margin:5px;
             }
-            input{
+            .ant-select-selection,
+            .ant-select-selection--single,input{
                 width: 100%;
                 min-width: 150px;
                 border: none;

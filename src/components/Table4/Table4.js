@@ -1,8 +1,8 @@
 import React from "react";
 import { Select } from "antd";
 
-import { cpDetailsdata, data } from "./Constants";
-import "./Table3.scss";
+import { data } from "./Constants";
+import "./Table4.scss";
 import { Radio } from "antd";
 const { Option } = Select;
 
@@ -11,7 +11,7 @@ function App(props) {
   const [state2, setState2] = React.useState([]);
   React.useEffect(() => {
     setState(data);
-    setState2(cpDetailsdata);
+    setState2(data);
   }, []);
 
   const handleAddRow = () => {
@@ -37,16 +37,15 @@ function App(props) {
   };
 
   return (
-    <div className="thirdDiv">
+    <div className="secondDiv">
       <div className="button-div">
         <Radio.Group onChange={onChange1} defaultValue="cargo">
-          <Radio.Button value="cargo">Singapore (upload)</Radio.Button>
-          <Radio.Button value="cp">mumbai(UPLOAD)</Radio.Button>
-          <Radio.Button value="abc">All Port</Radio.Button>
+          <Radio.Button value="cargo">Calculations</Radio.Button>
+          <Radio.Button value="cp">Reset</Radio.Button>
         </Radio.Group>
       </div>
       <br />
-      <div className="card ">
+      <div className="card">
         <div className="card-body">
           {value1 == "cargo" ? (
             <table>
@@ -113,7 +112,7 @@ function App(props) {
                   state2[0].values.map((d, index) => {
                     return (
                       <tr>
-                        {cpDetailsdata.map((res, i) => (
+                        {data.map((res, i) => (
                           <td>
                             <input
                               value={props.form[res.key + index]}

@@ -3,8 +3,10 @@ import React from 'react';
 
 import Table1 from './components/Table1/Table1';
 import Table2 from './components/Table2/Table2';
-import UiTransaction from './components/Table3/Table3';
-import TopNavBar from './components/NavBar/TopNavBar'
+import Table3 from './components/Table3/Table3';
+import Table4 from './components/Table4/Table4';
+import TopNavBar from './components/NavBar/TopNavBar';
+import EstimateSummary from './components/component1'
 // 3rd
 import './styles/antd.less';
 import './styles/bootstrap/bootstrap.scss'
@@ -57,6 +59,9 @@ function App() {
         <TopNavBar />
         <Table1 />
         <Table2 form={form} onchange={onchange} />
+        <Table3 form={form} onchange={onchange} />
+        <Table4 form={form} onchange={onchange}/>
+        <EstimateSummary />
     </div>
   );
 }
