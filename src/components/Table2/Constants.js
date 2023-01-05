@@ -90,4 +90,24 @@ export const cpDetailsdata = [
     values: [""],
     label: "Allowed Time",
   },
+  {
+    key: "Used time",
+    values: [""],
+    label: "Used time",
+  },
+  {
+    key: "Deduction",
+    values: [""],
+    label: "Deduction",
+  },
+  {
+    key: "Balance time",
+    values: [""],
+    label: "Balance time",
+  },
+  {
+    key: "result@port",
+    values: [""],
+    label: "result@port",
+  },
 ];
