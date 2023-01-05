@@ -1,8 +1,8 @@
 import "./Table1.scss";
 import React from "react";
 import { Data } from "../../Data/data.js";
-import {Select} from "antd"
- 
+import { Select } from "antd";
+
 const clear = () => {
   this.state.data.map((data) => {
     data.value = "";
@@ -10,9 +10,9 @@ const clear = () => {
   });
 };
 
-const handleChange = ()=>{
+const handleChange = () => {
   console.log("clicked");
-}
+};
 
 class FirstTable extends React.Component {
   constructor(props) {
@@ -38,35 +38,28 @@ class FirstTable extends React.Component {
               {this.state.data.map((data, i) => {
                 return (
                   <div key={data.index} className="grid-item">
-                      <label className="label">
-                        <div className="label-div">{data.label} :</div>
+                    <label className="label">
+                      <div className="label-div">{data.label} :</div>
 
-                        {
-                          data["options"] != undefined ? (
-                            <Select
-                              defaultValue=""
-                              options={[
-                                {
-                                    value:"deduction",
-                                    label:"Deduction",
-                                },
-                                {
-                                    value:"timeCounting",
-                                    label:"Time Counting",
-                                }
-                                
-                            ]}
-                            />
-                          ) 
-                          :
-                          (
-                            <input
-                              className="input"
-                              type={data.type}
-                              name="name"
-                            />
-                        )}
-                      </label>
+                      {data["options"] != undefined ? (
+                        <Select
+                          defaultValue=""
+                          style={{ flex: "0.6" }}
+                          options={[
+                            {
+                              value: "deduction",
+                              label: "Deduction",
+                            },
+                            {
+                              value: "timeCounting",
+                              label: "Time Counting",
+                            },
+                          ]}
+                        />
+                      ) : (
+                        <input className="input" type={data.type} name="name" />
+                      )}
+                    </label>
                   </div>
                 );
               })}

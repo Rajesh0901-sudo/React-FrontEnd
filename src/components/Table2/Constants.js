@@ -45,16 +45,16 @@ export const data = [
     key: "demRatePerDay",
     values: [""],
     label: "Dem rate/D",
-    formula: divide,
+    formula: "demRatePerDay/2",
     args: ["demRatePerDay", 2],
     outputField: "desRatePerDay",
-    
   },
   {
     key: "desRatePerDay",
     values: [""],
     label: "Des rate/D",
-    
+    formula: "desRatePerDay*2",
+    outputField: "demRatePerDay",
   },
   {
     key: "laycan_start",
@@ -66,6 +66,28 @@ export const data = [
     values: [""],
     label: "Laycan end",
   },
-  
-
+];
+export const cpDetailsdata = [
+  {
+    key: "cargoPortName",
+    values: [""],
+    label: "Port Name",
+    formula: "portName",
+    outputField: "cargoPortName",
+  },
+  {
+    key: "laytimeCommence",
+    values: [""],
+    label: "Laytime commence",
+  },
+  {
+    key: "laytimeCompleted",
+    values: [""],
+    label: "Laytime completed",
+  },
+  {
+    key: "allowedtime",
+    values: [""],
+    label: "Allowed Time",
+  },
 ];
