@@ -41,4 +41,31 @@ export const data = [
     values: [""],
     label: "TERM",
   },
+  {
+    key: "demRatePerDay",
+    values: [""],
+    label: "Dem rate/D",
+    formula: divide,
+    args: ["demRatePerDay", 2],
+    outputField: "desRatePerDay",
+    
+  },
+  {
+    key: "desRatePerDay",
+    values: [""],
+    label: "Des rate/D",
+    
+  },
+  {
+    key: "laycan_start",
+    values: [""],
+    label: "Laycan start",
+  },
+  {
+    key: "laycan_end",
+    values: [""],
+    label: "Laycan end",
+  },
+  
+
 ];
