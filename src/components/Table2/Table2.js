@@ -15,7 +15,6 @@ function App(props) {
   }, []);
 
   const handleAddRow = () => {
-    console.log(state);
     const res = [...state];
     res.forEach((d) => {
       d.values.push("");
@@ -25,7 +24,6 @@ function App(props) {
       d.values.push("");
     });
     setState2(res2);
-    console.log(res);
     setState(res);
   };
 
