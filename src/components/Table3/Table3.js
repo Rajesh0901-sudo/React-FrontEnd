@@ -52,42 +52,42 @@ class ResultDiv extends React.Component {
           ))}
         </Tabs>
         <div className="wrap">
-        <table className="table3">
-          <tr>
-            {data.map((d, i) => (
-              <th className={i == 0 ? "check" : "not"}>{d.label}</th>
-            ))}
-          </tr>
-          {/* {this.props.form["portActivityTable"].toString()} */}
-          {this.props.form["portActivityTable"] &&
-          this.props.form["portActivityTable"].length > this.state.tabIndex ? (
-            this.props.form["portActivityTable"][this.state.tabIndex].map(
-              (res, i) => (
-                <tr>
-                  {data.map((d) => (
-                    <td className={d.type == "checkbox" ? "check" : "not"}>
-                      <input
-                        name={d.key}
-                        placeholder={d.label}
-                        onChange={(e) =>
-                          this.props.onchange(i, e, this.state.tabIndex)
-                        }
-                        value={
-                          this.props.form["portActivityTable"][
-                            this.state.tabIndex
-                          ][i][d.key]
-                        }
-                        type={d.type}
-                      />
-                    </td>
-                  ))}
-                </tr>
+          <table className="table3">
+            <tr>
+              {data.map((d, i) => (
+                <th className={i == 0 ? "check" : "not"}>{d.label}</th>
+              ))}
+            </tr>
+            {/* {this.props.form["portActivityTable"].toString()} */}
+            {this.props.form["portActivityTable"] &&
+            this.props.form["portActivityTable"].length > this.state.tabIndex ? (
+              this.props.form["portActivityTable"][this.state.tabIndex].map(
+                (res, i) => (
+                  <tr>
+                    {data.map((d) => (
+                      <td className={d.type == "checkbox" ? "check" : "not"}>
+                        <input
+                          name={d.key}
+                          placeholder={d.label}
+                          onChange={(e) =>
+                            this.props.onchange(i, e, this.state.tabIndex)
+                          }
+                          value={
+                            this.props.form["portActivityTable"][
+                              this.state.tabIndex
+                            ][i][d.key]
+                          }
+                          type={d.type}
+                        />
+                      </td>
+                    ))}
+                  </tr>
+                )
               )
-            )
-          ) : (
-            <h1>asd</h1>
-          )}
-        </table>
+            ) : (
+              <h1>asd</h1>
+            )}
+          </table>
         <button
           onClick={() => this.props.addRow(this.state.tabIndex)}
           className="addRow"

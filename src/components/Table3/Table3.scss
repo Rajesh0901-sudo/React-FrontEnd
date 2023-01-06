@@ -6,6 +6,7 @@
 }
 .table3{
     width: 75vw;
+    height: fit-content;
     min-width: 900px;
     border: 0.1px solid #cac3c3;
 
@@ -24,8 +25,9 @@
         margin: auto;
         display: block;
     }
+
     td,th{
-        height: 30px;
+        height: 30px !important;
     }
 }
 
