@@ -14,16 +14,30 @@ import {
   Popconfirm,
   Checkbox,
 } from "antd";
+
 import { result1Data } from "../../Data/result1Data.js";
+import './Table3.scss'
 import { data } from "./Constants.js";
+const TabPane = Tabs.TabPane;
 
 class ResultDiv extends React.Component {
   render() {
-    return (
-      <table>
+    return (<>
+        <Tabs defaultActiveKey='1'  animated={true}>
+          <TabPane key={'1'} value="cargo" tab={<p className="tab-p">Singapore</p>}>
+                  
+          </TabPane>
+          <TabPane key={'2'} value="cp" tab={<p className="tab-p">Mumbai</p>}>
+                  
+          </TabPane>
+          <TabPane key={'3'} value="cp" tab={<p className="tab-p">All Port</p>}>
+                  
+                  </TabPane>
+        </Tabs>
+      <table className="table3">
         <tr>
-          {data.map((d) => (
-            <th>{d.label}</th>
+          {data.map((d,i) => (
+            <th className={i == 0? "check":"not"}>{d.label}</th>
           ))}
         </tr>
         {/* {this.props.form["portActivityTable"].toString()} */}
@@ -31,9 +45,10 @@ class ResultDiv extends React.Component {
           this.props.form["portActivityTable"].map((res, i) => (
             <tr>
               {data.map((d) => (
-                <td>
+                <td className={d.type == "checkbox"? "check":"not"}>
                   <input
                     name={d.key}
+                    placeholder={d.label}
                     onChange={(e) => this.props.onchange(i, e)}
                     value={this.props.form["portActivityTable"][i][d.key]}
                     type={d.type}
@@ -45,8 +60,10 @@ class ResultDiv extends React.Component {
         ) : (
           <h1>asd</h1>
         )}
-        <button onClick={this.props.addRow}>Add Row</button>
+        
       </table>
+      <button onClick={this.props.addRow} className="addRow"><p>Add Row</p></button>
+      </>
     );
   }
 }

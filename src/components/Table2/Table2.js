@@ -3,8 +3,15 @@ import { Select } from "antd";
 
 import { cpDetailsdata, data } from "./Constants";
 import "./Table2.scss";
+import { Tabs } from "antd";
 import { Radio } from "antd";
 const { Option } = Select;
+const TabPane = Tabs.TabPane;
+
+
+const onChange = (key) => {
+  console.log(key);
+};
 
 function App(props) {
   const [state, setState] = React.useState([]);
@@ -27,26 +34,27 @@ function App(props) {
     setState(res);
   };
 
-  const [value1, setValue1] = React.useState("cargo");
+  const [value1, setValue1] = React.useState("1");
 
-  const onChange1 = ({ target: { value } }) => {
+  const onChange1 = (value) => {
     console.log(value);
     setValue1(value);
   };
 
-  return (
-    <div className="secondDiv">
-      <div className="button-div">
-        <Radio.Group onChange={onChange1} defaultValue="cargo">
-          <Radio.Button value="cargo">Cargo Detail</Radio.Button>
-          <Radio.Button value="cp">CP Detail</Radio.Button>
-        </Radio.Group>
-      </div>
+  return (<>
+        <Tabs defaultActiveKey='1' onChange={onChange1} animated={true}>
+          <TabPane key={'1'} value="cargo" tab={<p className="tab-p">Cargo Details</p>}>
+                  
+          </TabPane>
+          <TabPane key={'2'} value="cp" tab={<p className="tab-p">CP Details</p>}>
+                  
+          </TabPane>
+        </Tabs>
+        <div className="secondDiv">
+          
       <br />
-      <div className="card">
-        <div className="card-body">
-          {value1 == "cargo" ? (
-            <table>
+          {value1 == "1" ? (
+            <table className="table2">
               <tbody>
                 <tr className="table-heading">
                   {state.map((d) => (
@@ -75,6 +83,7 @@ function App(props) {
                               <input
                                 value={props.form[res.key + index]}
                                 name={res.key + index}
+                                placeholder={res.label }
                                 onChange={(e) => {
                                   props.onchange(
                                     e,
@@ -97,7 +106,7 @@ function App(props) {
               </tbody>
             </table>
           ) : (
-            <table>
+            <table className="table2">
               <tbody>
                 <tr className="table-heading">
                   {state2.map((d) => (
@@ -115,6 +124,7 @@ function App(props) {
                             <input
                               value={props.form[res.key + index]}
                               name={res.key + index}
+                              placeholder={res.label }
                               onChange={(e) => {
                                 props.onchange(
                                   e,
@@ -136,12 +146,11 @@ function App(props) {
               </tbody>
             </table>
           )}
-          <a href="#" onClick={handleAddRow} class="btn btn-primary">
+          <a onClick={handleAddRow} class="btn btn-primary">
             Add Row
           </a>
         </div>
-      </div>
-    </div>
+        </>
   );
 }
 

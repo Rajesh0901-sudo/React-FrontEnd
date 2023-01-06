@@ -2,6 +2,7 @@ import "./Table1.scss";
 import React from "react";
 import { Data } from "../../Data/data.js";
 import { Select } from "antd";
+const { Option } = Select;
 
 const clear = () => {
   this.state.data.map((data) => {
@@ -42,31 +43,36 @@ class FirstTable extends React.Component {
                       <div className="label-div">{data.label} :</div>
 
                       {data["options"] != undefined ? (
-                        <Select
-                          defaultValue=""
-                          style={{ flex: "0.6" }}
-                          options={[
-                            {
-                              value: "deduction",
-                              label: "Deduction",
-                            },
-                            {
-                              value: "timeCounting",
-                              label: "Time Counting",
-                            },
-                          ]}
-                        />
+                        <Select 
+                            defaultValue={data.options[0].value}
+                            style={{ flex: "0.5" }}
+                            >
+                        {
+                          data.options.map((d,index)=>{
+                            return <Option value={d["value"]} label={d["label"]}>
+                              <div className="demo-option-label-item">
+                                {d["label"]}
+                              </div>
+                            </Option>
+                          }
+                          )
+                        }
+                        
+
+                      </Select>
+                        
                       ) : (
-                        <input className="input" type={data.type} name="name" />
-                      )}
+                          data["type"]!='date' ?
+                          <input className="input" type={data.type} placeholder={data.label} name="name" />
+                          : 
+                          <input className="input" type={data.type} name="name" />
+                      )
+                      }
                     </label>
                   </div>
                 );
               })}
             </div>
-            <a href="#" onClick={clear} className="btn btn-primary">
-              Clear
-            </a>
           </div>
         </div>
       </div>

@@ -15,11 +15,12 @@ import {
   Checkbox,
 } from "antd";
 import { result1Data } from "../../Data/result1Data.js";
+import './Table4.scss'
 import { tableData } from "./Constants.js";
 
 class Table4 extends React.Component {
   render() {
-    return (
+    return (<>
       <table>
         <tr>
           {tableData.map((d) => (
@@ -45,8 +46,10 @@ class Table4 extends React.Component {
         ) : (
           <h1>asd</h1>
         )}
-        <button onClick={this.props.addRow}>Add Row</button>
+        
       </table>
+      <button onClick={this.props.addRow} className="addRow2">Add Row</button>
+      </>
     );
   }
 }

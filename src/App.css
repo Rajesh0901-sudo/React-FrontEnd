@@ -3,6 +3,8 @@
   width: 98%;
   border: 0.1px solid black;
   margin:auto;
-  font-family: Poppins;
-  color: #333;
+  font-family: Segoe UI,sans-serif!important;
+  color: rgb(75, 75, 75);
+  background-color: white;
+  min-height: 200vh;
 }
