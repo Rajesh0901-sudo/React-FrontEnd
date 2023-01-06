@@ -1,7 +1,16 @@
-.addRow2{
-    width: 112px;
-    color: white;
-    background: #288ba2;
-    border: none;
-    margin-bottom: 100px;
+.fourth-table-div{
+    width: 75vw;
+    min-width: 900px;
+    border: 0.1px solid #cac3c3;
+    min-height: 300px;
+    max-width: 99%;
+    overflow: scroll;
+    td,th{
+        height: 30px;
+        min-width: 141px;
+        
+        input{
+            width: 138.1px;
+        }
+    }
 }

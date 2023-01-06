@@ -21,7 +21,8 @@ import { tableData } from "./Constants.js";
 class Table4 extends React.Component {
   render() {
     return (<>
-      <table>
+    <div className="fourth-table-div">
+      <table className="table4">
         <tr>
           {tableData.map((d) => (
             <th>{d.label}</th>
@@ -48,7 +49,7 @@ class Table4 extends React.Component {
         )}
         
       </table>
-      <button onClick={this.props.addRow} className="addRow2">Add Row</button>
+    </div>
       </>
     );
   }

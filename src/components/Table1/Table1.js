@@ -45,7 +45,7 @@ class FirstTable extends React.Component {
                       {data["options"] != undefined ? (
                         <Select 
                             defaultValue={data.options[0].value}
-                            style={{ flex: "0.5" }}
+                            style={{ flex: "0.65" }}
                             >
                         {
                           data.options.map((d,index)=>{

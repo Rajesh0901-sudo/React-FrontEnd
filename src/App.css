@@ -1,10 +1,9 @@
 @import '../node_modules/antd/dist/antd.css';
 .App {
-  width: 98%;
   border: 0.1px solid black;
   margin:auto;
   font-family: Segoe UI,sans-serif!important;
   color: rgb(75, 75, 75);
   background-color: white;
-  min-height: 200vh;
+  padding: 20px;
 }

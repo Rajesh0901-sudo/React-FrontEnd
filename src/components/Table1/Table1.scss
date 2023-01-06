@@ -1,5 +1,5 @@
 .table1-div{
-    width: 96%;;
+    width: 100%;;
     margin-top: 20px;
     margin-right: auto;
     margin-left:auto;
@@ -17,18 +17,25 @@
     .grid-container {
         display: grid;
         grid-template-columns: auto auto auto;
+        &:hover{
+            background: #288ca223;
+            transition: 0.2s ease-in-out;
+        }
       }
       .grid-item {
         font-size: 14px;      
         margin: 0.1px;
         padding: 5px;
-        border: 1px solid #cac3c3;
+        border: 0.1px solid #cac3c3;
         transition: 0.2s ease-in-out;
-
         &:hover{
-            background: #288ca223;
+            background: white;
+            input{
+                background: #2b8aa011;
+            }
             transition: 0.2s ease-in-out;
         }
+        
       }
 
     .label{
@@ -43,13 +50,13 @@
         }
 
         .input{
-            min-width: 150px;
+            min-width: 250px;
             border: none;
-            background: rgba(232, 232, 232, 0.276);
             color: black;
+            height: 30px;
             font-family: none;
             font-size: 15px;
-            flex: 0.5;
+            flex: 0.6;
 
             
         }
@@ -66,15 +73,15 @@
 
 }
     .ant-select ant-select-enabled{
-        flex: 0.5 !important;
+        flex: 0.6 !important;
     }
 
     th{
         background-color:#288ba2;
         color: white;
         font-weight: 600;
-        min-width: 150px;
-        padding: 0.5rem;
+        width: auto;
+        padding: 0.3rem;
         font-size: 14px;
         border: 1px solid #cac3c3;
         border:0.2px solid ;
@@ -88,11 +95,18 @@
         font-family: Segoe UI,sans-serif!important;
     }
     td{
-        border: 0.2px solid ;
+        border: 1px solid  #cac3c3;
         margin: -0.8px;
+        font-size: 14px;
+        transition: 0.2s ease-in-out;
+        width: auto;
+        
     }
     tr:hover{
-        background: #288ca223;
+        input{
+            background: white !important;
+        }
+        
         transition: 0.2s ease-in-out;
     }
     ::-webkit-input-placeholder { /* Edge */
@@ -108,4 +122,9 @@
       }
     input{
         border:none;
+    }
+    table:hover{
+        input{
+            background: #2b8aa03d;
+        }
     }

@@ -1,13 +1,28 @@
 import React from "react";
 import { Select } from "antd";
 
-import { cpDetailsdata, data } from "./Constants";
+import { cpDetailsdata, data ,resultData} from "./Constants";
 import "./Table2.scss";
 import { Tabs } from "antd";
-import { Radio } from "antd";
+import { Checkbox } from "antd";
+import { CheckboxValueType } from 'antd';
 const { Option } = Select;
 const TabPane = Tabs.TabPane;
 
+const onChange2 = (checkedValues) => {
+  console.log('checked = ', checkedValues);
+};
+
+const options = [
+  { label: 'Apple', value: 'Apple' },
+  { label: 'Pear', value: 'Pear' },
+  { label: 'Orange', value: 'Orange' },         
+];
+const laytimeMethodOptions = [
+  { label: 'Reversible', value: 'Reversible' },
+  { label: 'On Demand', value: 'OnDemand' },
+  { label: 'Display dem', value: 'DisplayDem' },         
+];
 
 const onChange = (key) => {
   console.log(key);
@@ -42,7 +57,7 @@ function App(props) {
   };
 
   return (<>
-        <Tabs defaultActiveKey='1' onChange={onChange1} animated={true}>
+        <Tabs className="tabss" defaultActiveKey='1' onChange={onChange1} animated={true}>
           <TabPane key={'1'} value="cargo" tab={<p className="tab-p">Cargo Details</p>}>
                   
           </TabPane>
@@ -51,7 +66,6 @@ function App(props) {
           </TabPane>
         </Tabs>
         <div className="secondDiv">
-          
       <br />
           {value1 == "1" ? (
             <table className="table2">
@@ -149,8 +163,47 @@ function App(props) {
           <a onClick={handleAddRow} class="btn btn-primary">
             Add Row
           </a>
-        </div>
-        </>
+
+          <div className="check-box-div">
+              <div className="first-div">
+                 <a className="btn btn-primary btn-import">Import Activity</a>
+                 <Select defaultValue={options[0].label}>
+                    {options.map((opt) => (
+                      <Option value={opt.value} label={opt.label}>
+                        <div className="demo-option-label-item">
+                          {opt.label}
+                        </div>
+                      </Option>
+                    ))}
+                  </Select>
+
+              </div>
+              <Checkbox.Group
+                options={laytimeMethodOptions}
+                defaultValue={['OnDemand']}
+              />
+
+              <div className="result-div">
+                <div className="heading">
+                  <h6>Result</h6>
+                </div>
+                <div className="grid-container">
+                  {resultData.map((data, i) => {
+                    return (
+                      <div key={data.index} className="grid-item">
+                        <label className="label">
+                          <div className="label-div">{data.label} :</div>
+                          <input className="input" type={data.type} placeholder={data.label} name="name" />
+                        </label>
+                      </div>
+                    );
+                  })}           
+                </div>
+              </div>
+             
+          </div>
+      </div>
+    </>
   );
 }
 

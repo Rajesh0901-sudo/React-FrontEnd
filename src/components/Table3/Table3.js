@@ -1,24 +1,14 @@
 import React from "react";
-import {
-  Table,
-  Input,
-  Row,
-  Col,
-  Button,
-  Tabs,
-  Form,
-  DatePicker,
-  Menu,
-  Dropdown,
-  Icon,
-  Popconfirm,
-  Checkbox,
-} from "antd";
+import {Tabs} from "antd";
 
 import { result1Data } from "../../Data/result1Data.js";
 import './Table3.scss'
 import { data } from "./Constants.js";
+
+
 const TabPane = Tabs.TabPane;
+
+
 
 class ResultDiv extends React.Component {
   render() {
@@ -34,38 +24,40 @@ class ResultDiv extends React.Component {
                   
                   </TabPane>
         </Tabs>
-      <table className="table3">
-        <tr>
-          {data.map((d,i) => (
-            <th className={i == 0? "check":"not"}>{d.label}</th>
-          ))}
-        </tr>
-        {/* {this.props.form["portActivityTable"].toString()} */}
-        {this.props.form["portActivityTable"] ? (
-          this.props.form["portActivityTable"].map((res, i) => (
+      <div className="wrap">
+          <table className="table3">
             <tr>
-              {data.map((d) => (
-                <td className={d.type == "checkbox"? "check":"not"}>
-                  <input
-                    name={d.key}
-                    placeholder={d.label}
-                    onChange={(e) => this.props.onchange(i, e)}
-                    value={this.props.form["portActivityTable"][i][d.key]}
-                    type={d.type}
-                  />
-                </td>
+              {data.map((d,i) => (
+                <th className={i == 0? "check":"not"}>{d.label}</th>
               ))}
             </tr>
-          ))
-        ) : (
-          <h1>asd</h1>
-        )}
-        
-      </table>
-      <button onClick={this.props.addRow} className="addRow"><p>Add Row</p></button>
+            {/* {this.props.form["portActivityTable"].toString()} */}
+            {this.props.form["portActivityTable"] ? (
+              this.props.form["portActivityTable"].map((res, i) => (
+                <tr>
+                  {data.map((d) => (
+                    <td className={d.type == "checkbox"? "check":"not"}>
+                      <input
+                        name={d.key}
+                        placeholder={d.label}
+                        onChange={(e) => this.props.onchange(i, e)}
+                        value={this.props.form["portActivityTable"][i][d.key]}
+                        type={d.type}
+                      />
+                    </td>
+                  ))}
+                </tr>
+              ))
+            ) : (
+              <h1>asd</h1>
+            )}
+            <button onClick={this.props.addRow} className="addRow"><p>Add Row</p></button>
+          </table>
+        </div>
       </>
     );
   }
 }
 
 export default ResultDiv;
+
