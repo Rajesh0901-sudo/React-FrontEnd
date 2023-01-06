@@ -87,7 +87,7 @@ function App() {
     try {
       let myNewForm = { ...form };
       if (e.target.name == "checked") {
-        addRowtotable4(index);
+        addRowtotable4(index, tabIndex);
       }
       myNewForm["portActivityTable"][tabIndex][index][e.target.name] =
         e.target.value;
@@ -103,13 +103,13 @@ function App() {
     }
   };
 
-  const addRowtotable4 = function (index) {
+  const addRowtotable4 = function (index, tabi) {
     let myNewForm = { ...form };
     let obj = {};
     tableData.forEach((data) => {
       obj[data.key] = "";
     });
-    obj["fromDate"] = form["portActivityTable"][index]["fromDate"];
+    obj["fromDate"] = form["portActivityTable"][tabi][index]["fromDate"];
     myNewForm["resultActivityTable"].push(obj);
     myNewForm["resultActivityTable"].sort(function (a, b) {
       return -(
@@ -117,12 +117,6 @@ function App() {
         new Date(a.fromDate + " " + a.fromDatetime)
       );
     });
-    // myNewForm["resultActivityTable"].map((data, index) => {
-    //   data[index]["toDate"] =
-    //     myNewForm["resultActivityTable"].length > index + 1
-    //       ? myNewForm["resultActivityTable"][index + 1]["fromDate"]
-    //       : "22/02/2001";
-    // });
     setFormData(myNewForm);
   };
 
@@ -131,7 +125,6 @@ function App() {
     let obj = {};
     data.forEach((d, index) => {
       obj[d.key] = "";
-      // myNewForm["portActivityTable"].push(d.key:"");
     });
     myNewForm["portActivityTable"][tabi].push(obj);
     setFormData(myNewForm);
