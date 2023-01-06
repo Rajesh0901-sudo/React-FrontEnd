@@ -21,9 +21,21 @@ import { tableData } from "./components/Table4/Constants";
 
 function App() {
   const [form, setFormData] = React.useState({});
+  const [tabs, settabs] = React.useState([]);
+  const formTabs = [];
   const onchange = (event, formula, out, args, index) => {
     let myNewForm = { ...form };
     myNewForm[event.target.name] = event.target.value;
+    let t = [];
+    Array.from(Array(100)).map((d, i) => {
+      form["portName" + i]
+        ? t.push(form["portName" + i] ? form["portName" + i] : "")
+        : console.log();
+    });
+    settabs(t);
+    t.forEach((d) => {
+      myNewForm["portActivityTable"].push([]);
+    });
     if (formula) {
       // myNewForm[out + index] = formula(myNewForm[args[0] + index], args[1]);
       formula.forEach((form, i) => {
@@ -46,14 +58,14 @@ function App() {
 
   React.useEffect(() => {
     let myNewForm = { ...form };
-    myNewForm["portActivityTable"] = [];
+    myNewForm["portActivityTable"] = [[]];
     myNewForm["resultActivityTable"] = [];
     let obj = {};
     data.forEach((d, index) => {
       obj[d.key] = "";
       // myNewForm["portActivityTable"].push(d.key:"");
     });
-    myNewForm["portActivityTable"].push(obj);
+    myNewForm["portActivityTable"][0].push(obj);
     setFormData(myNewForm);
   }, []);
 
@@ -71,14 +83,15 @@ function App() {
     return arr[0].split(",");
   };
 
-  const onChangeTable3 = function (index, e) {
+  const onChangeTable3 = function (index, e, tabIndex) {
     try {
       let myNewForm = { ...form };
       if (e.target.name == "checked") {
-        addRowtotable4(index);
+        addRowtotable4(index, tabIndex);
       }
-      myNewForm["portActivityTable"][index][e.target.name] = e.target.value;
-      myNewForm["portActivityTable"].sort(function (a, b) {
+      myNewForm["portActivityTable"][tabIndex][index][e.target.name] =
+        e.target.value;
+      myNewForm["portActivityTable"][tabIndex].sort(function (a, b) {
         return -(
           new Date(b.fromDate + " " + b.time) -
           new Date(a.fromDate + " " + a.time)
@@ -90,13 +103,13 @@ function App() {
     }
   };
 
-  const addRowtotable4 = function (index) {
+  const addRowtotable4 = function (index, tabi) {
     let myNewForm = { ...form };
     let obj = {};
     tableData.forEach((data) => {
       obj[data.key] = "";
     });
-    obj["fromDate"] = form["portActivityTable"][index]["fromDate"];
+    obj["fromDate"] = form["portActivityTable"][tabi][index]["fromDate"];
     myNewForm["resultActivityTable"].push(obj);
     myNewForm["resultActivityTable"].sort(function (a, b) {
       return -(
@@ -104,23 +117,16 @@ function App() {
         new Date(a.fromDate + " " + a.fromDatetime)
       );
     });
-    // myNewForm["resultActivityTable"].map((data, index) => {
-    //   data[index]["toDate"] =
-    //     myNewForm["resultActivityTable"].length > index + 1
-    //       ? myNewForm["resultActivityTable"][index + 1]["fromDate"]
-    //       : "22/02/2001";
-    // });
     setFormData(myNewForm);
   };
 
-  const addRow = function () {
+  const addRow = function (tabi) {
     let myNewForm = { ...form };
     let obj = {};
     data.forEach((d, index) => {
       obj[d.key] = "";
-      // myNewForm["portActivityTable"].push(d.key:"");
     });
-    myNewForm["portActivityTable"].push(obj);
+    myNewForm["portActivityTable"][tabi].push(obj);
     setFormData(myNewForm);
   };
 
@@ -130,6 +136,7 @@ function App() {
       <Table1 />
       <Table2 form={form} onchange={onchange} />
       <UiTransaction
+        tabs={formTabs}
         addRow={addRow}
         onchange={onChangeTable3}
         form={form}
