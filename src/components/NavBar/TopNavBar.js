@@ -3,7 +3,8 @@ import './TopNavBar.scss'
 function TopBar() {
     return (
       <div className="navbar">
-        <span>Top Nav Bar</span>
+        	<a className="btn btn-primary">Create Invoice</a>
+          <a className="btn btn-primary">Download report	</a>        	
       </div>
     );
   }

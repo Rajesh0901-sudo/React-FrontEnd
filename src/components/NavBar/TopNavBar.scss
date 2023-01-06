@@ -1,12 +1,20 @@
 .navbar{
+
     height: 40px;
-    width: 96%;
-    margin: auto;
     background: #fff;
-    border-bottom: 1px solid #e8e8e8;
-    box-shadow: 0 2px 2px rgba(204, 197, 185,  0.5);
-    span{
-        position: absolute;
-        right:30px;
+    justify-content: end !important;
+
+    .btn{
+        color: white !important;
+        background: #288ba2;
+        height: 35px;
+        margin-bottom: 0px;
+        margin-right:20px;
+        border: none;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;    
+        display: flex;
+        justify-content: center;
     }
+    
+    
 }
