@@ -25,36 +25,45 @@ function App() {
   const [tabs, settabs] = React.useState([]);
   const formTabs = [];
   const onchange = (event, formula, out, args, index) => {
-    let myNewForm = { ...form };
-    myNewForm[event.target.name] = event.target.value;
-    let t = [];
-    Array.from(Array(100)).map((d, i) => {
-      form["portName" + i]
-        ? t.push(form["portName" + i] ? form["portName" + i] : "")
-        : console.log();
-    });
-    settabs(t);
-    t.forEach((d) => {
-      myNewForm["portActivityTable"].push([]);
-    });
-    if (formula) {
-      // myNewForm[out + index] = formula(myNewForm[args[0] + index], args[1]);
-      formula.forEach((form, i) => {
-        let formulaStr = form;
-        let args = splitFormula(form);
-        args.map((data, i) => {
-          if (typeof data == "string" && isNaN(data)) {
-            formulaStr = formulaStr.replace(
-              data,
-              myNewForm[data + index] ? myNewForm[data + index] : 0
-            );
-          }
-        });
-        myNewForm[out[i] + index] = eval(formulaStr);
+    if(event.target.value != ""){
+
+      let myNewForm = { ...form };
+      myNewForm[event.target.name] = event.target.value;
+      let t = [];
+
+      //assuming max total activity entry is 100
+      Array.from(Array(100)).map((d, i) => {
+        form["portName" + i]
+          ? t.push(form["portName" + i] ? form["portName" + i] : "")
+          : console.log();
       });
+      settabs(t);
+      t.forEach((d) => {
+        myNewForm["portActivityTable"].push([]);
+      });
+      if (formula) {
+        // myNewForm[out + index] = formula(myNewForm[args[0] + index], args[1]);
+        let i=0;
+        for(const form of formula)
+        {
+          let formulaStr = form;
+          let args = splitFormula(form);
+          args.map((data, i) => {
+            if (typeof data == "string" && isNaN(data)) {
+              formulaStr = formulaStr.replace(
+                data,
+                myNewForm[data + index] ? myNewForm[data + index] : 0
+              );
+            }
+          })
+          myNewForm[out[i] + index] = eval(formulaStr);
+          i++;
+        }
+      }
+      setFormData(myNewForm);
+      
+      console.log(myNewForm);
     }
-    setFormData(myNewForm);
-    console.log(myNewForm);
   };
 
   React.useEffect(() => {
@@ -85,11 +94,16 @@ function App() {
   };
 
   const onChangeTable3 = function (index, e, tabIndex) {
+    
     try {
       let myNewForm = { ...form };
       if (e.target.name == "checked") {
-        addRowtotable4(index, tabIndex);
+        if(e.target.checked)
+          addRowtotable4(index, tabIndex);
+        else
+          return;
       }
+      console.log(e.target.value);
       myNewForm["portActivityTable"][tabIndex][index][e.target.name] =
         e.target.value;
       myNewForm["portActivityTable"][tabIndex].sort(function (a, b) {
@@ -111,6 +125,8 @@ function App() {
       obj[data.key] = "";
     });
     obj["fromDate"] = form["portActivityTable"][tabi][index]["fromDate"];
+    obj["fromDatetime"] = form["portActivityTable"][tabi][index]["time"];
+    obj["toDatetime"] = form["portActivityTable"][tabi][index]["time"];
     obj["activity"] = form["portActivityTable"][tabi][index]["activity"];
 
     myNewForm["resultActivityTable"].push(obj);
@@ -128,13 +144,13 @@ function App() {
     setFormData(myNewForm);
   };
 
-  const addRow = function (tabi) {
+  const addRow = function (tableIndex) {
     let myNewForm = { ...form };
     let obj = {};
     data.forEach((d, index) => {
       obj[d.key] = "";
     });
-    myNewForm["portActivityTable"][tabi].push(obj);
+    myNewForm["portActivityTable"][tableIndex].push(obj);
     setFormData(myNewForm);
   };
 

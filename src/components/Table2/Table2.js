@@ -4,6 +4,7 @@ import { Select } from "antd";
 import { cpDetailsdata, data } from "./Constants";
 import "./Table2.scss";
 import { Tabs } from "antd";
+import { event } from "jquery";
 
 const { Option } = Select;
 const TabPane = Tabs.TabPane;
@@ -28,6 +29,7 @@ function App(props) {
     setState2(res2);
     setState(res);
   };
+
 
   const [value1, setValue1] = React.useState("1");
 
@@ -80,7 +82,7 @@ function App(props) {
                                 value={props.form[res.key + index]}
                                 name={res.key + index}
                                 placeholder={res.label }
-                                onChange={(e) => {
+                                onBlur={(e) => {
                                   props.onchange(
                                     e,
                                     res.formula,
@@ -134,7 +136,7 @@ function App(props) {
                                     value={props.form[res.key + index]}
                                     name={res.key + index}
                                     placeholder={res.label }
-                                    onChange={(e) => {
+                                    onBlur={(e) => {
                                       props.onchange(
                                         e,
                                         res.formula,

@@ -59,7 +59,7 @@ class ResultDiv extends React.Component {
     return (
       <>
         <Tabs
-          onChange={(e) => {
+          onClick={(e) => {
             this.setState({ tabIndex: e });
           }}
           defaultActiveKey="1"
