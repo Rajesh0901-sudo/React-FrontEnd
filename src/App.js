@@ -111,12 +111,19 @@ function App() {
       obj[data.key] = "";
     });
     obj["fromDate"] = form["portActivityTable"][tabi][index]["fromDate"];
+    obj["activity"] = form["portActivityTable"][tabi][index]["activity"];
+
     myNewForm["resultActivityTable"].push(obj);
     myNewForm["resultActivityTable"].sort(function (a, b) {
       return -(
         new Date(b.fromDate + " " + b.fromDatetime) -
         new Date(a.fromDate + " " + a.fromDatetime)
       );
+    });
+    myNewForm["resultActivityTable"].map((d, i) => {
+      d.toDate = myNewForm["resultActivityTable"][i + 1]
+        ? myNewForm["resultActivityTable"][i + 1]["fromDate"]
+        : myNewForm["resultActivityTable"][i]["fromDate"];
     });
     setFormData(myNewForm);
   };
