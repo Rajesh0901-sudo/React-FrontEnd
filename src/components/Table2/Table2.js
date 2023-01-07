@@ -1,32 +1,12 @@
 import React from "react";
 import { Select } from "antd";
 
-import { cpDetailsdata, data ,resultData} from "./Constants";
+import { cpDetailsdata, data } from "./Constants";
 import "./Table2.scss";
 import { Tabs } from "antd";
-import { Checkbox } from "antd";
-import { CheckboxValueType } from 'antd';
+
 const { Option } = Select;
 const TabPane = Tabs.TabPane;
-
-const onChange2 = (checkedValues) => {
-  console.log('checked = ', checkedValues);
-};
-
-const options = [
-  { label: 'Apple', value: 'Apple' },
-  { label: 'Pear', value: 'Pear' },
-  { label: 'Orange', value: 'Orange' },         
-];
-const laytimeMethodOptions = [
-  { label: 'Reversible', value: 'Reversible' },
-  { label: 'On Demand', value: 'OnDemand' },
-  { label: 'Display dem', value: 'DisplayDem' },         
-];
-
-const onChange = (key) => {
-  console.log(key);
-};
 
 function App(props) {
   const [state, setState] = React.useState([]);
@@ -72,7 +52,7 @@ function App(props) {
               <tbody>
                 <tr className="table-heading">
                   {state.map((d) => (
-                    <th>
+                    <th className={d.key=='Action'?'action-col':""}>
                       <p>{d.label}</p>{" "}
                     </th>
                   ))}
@@ -82,7 +62,7 @@ function App(props) {
                     return (
                       <tr>
                         {data.map((res, i) => (
-                          <td>
+                          <td className={res.key=='Action'?'action-col':""}>
                             {res.type == "dropdown" ? (
                               <Select defaultValue="">
                                 {res.options.map((opt) => (
@@ -93,7 +73,9 @@ function App(props) {
                                   </Option>
                                 ))}
                               </Select>
-                            ) : (
+                            ) : 
+                            
+                            res.key!='Action' ?(
                               <input
                                 value={props.form[res.key + index]}
                                 name={res.key + index}
@@ -108,7 +90,18 @@ function App(props) {
                                   );
                                 }}
                               />
-                            )}
+                            ):(
+                              <div className="action-div"> 
+                                <span class="material-symbols-outlined add-icon">
+                                  add
+                                </span>
+                                <span class="material-symbols-outlined delete-icon">
+                                    delete
+                                </span>
+                              </div>
+                            )
+                      
+                            }
                           </td>
                         ))}
                       </tr>
@@ -124,7 +117,7 @@ function App(props) {
               <tbody>
                 <tr className="table-heading">
                   {state2.map((d) => (
-                    <th>
+                    <th className={d.key=='Action'?'action-col':""}>
                       <p>{d.label}</p>{" "}
                     </th>
                   ))}
@@ -134,21 +127,37 @@ function App(props) {
                     return (
                       <tr>
                         {cpDetailsdata.map((res, i) => (
-                          <td>
-                            <input
-                              value={props.form[res.key + index]}
-                              name={res.key + index}
-                              placeholder={res.label }
-                              onChange={(e) => {
-                                props.onchange(
-                                  e,
-                                  res.formula,
-                                  res.outputField,
-                                  res.args,
-                                  index
-                                );
-                              }}
-                            />
+                          <td className={res.key=='Action'?'action-col':""}>
+                            {res.key != 'Action' ?
+                                (
+                                  <input
+                                    value={props.form[res.key + index]}
+                                    name={res.key + index}
+                                    placeholder={res.label }
+                                    onChange={(e) => {
+                                      props.onchange(
+                                        e,
+                                        res.formula,
+                                        res.outputField,
+                                        res.args,
+                                        index
+                                      );
+                                    }}
+                                  />
+                                )
+                                :
+                                (
+                                  <div className="action-div"> 
+                                    <span class="material-symbols-outlined add-icon">
+                                      add
+                                    </span>
+                                    <span class="material-symbols-outlined delete-icon">
+                                        delete
+                                    </span>
+                                  </div>
+                                )   
+                            }
+                            
                           </td>
                         ))}
                       </tr>
@@ -163,45 +172,6 @@ function App(props) {
           <a onClick={handleAddRow} class="btn btn-primary">
             Add Row
           </a>
-
-          <div className="check-box-div">
-              <div className="first-div">
-                 <a className="btn btn-primary btn-import">Import Activity</a>
-                 <Select defaultValue={options[0].label}>
-                    {options.map((opt) => (
-                      <Option value={opt.value} label={opt.label}>
-                        <div className="demo-option-label-item">
-                          {opt.label}
-                        </div>
-                      </Option>
-                    ))}
-                  </Select>
-
-              </div>
-              <Checkbox.Group
-                options={laytimeMethodOptions}
-                defaultValue={['OnDemand']}
-              />
-
-              <div className="result-div">
-                <div className="heading">
-                  <h6>Result</h6>
-                </div>
-                <div className="grid-container">
-                  {resultData.map((data, i) => {
-                    return (
-                      <div key={data.index} className="grid-item">
-                        <label className="label">
-                          <div className="label-div">{data.label} :</div>
-                          <input className="input" type={data.type} placeholder={data.label} name="name" />
-                        </label>
-                      </div>
-                    );
-                  })}           
-                </div>
-              </div>
-             
-          </div>
       </div>
     </>
   );

@@ -4,12 +4,6 @@ import { Data } from "../../Data/data.js";
 import { Select } from "antd";
 const { Option } = Select;
 
-const clear = () => {
-  this.state.data.map((data) => {
-    data.value = "";
-    console.log(data);
-  });
-};
 
 const handleChange = () => {
   console.log("clicked");
@@ -73,6 +67,7 @@ class FirstTable extends React.Component {
                 );
               })}
             </div>
+            
           </div>
         </div>
       </div>

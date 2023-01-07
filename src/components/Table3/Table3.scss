@@ -2,13 +2,14 @@
     display: flex;
     min-height: 300px;
     margin-bottom: 50px;
+    border: 0.1px solid #cac3c3;
     overflow: scroll;
 }
 .table3{
     width: 75vw;
     height: fit-content;
     min-width: 900px;
-    border: 0.1px solid #cac3c3;
+   
 
     input{
         border: none;
@@ -26,7 +27,7 @@
         display: block;
     }
 
-    td,th{
+    td{
         height: 30px !important;
     }
 }
@@ -37,9 +38,6 @@
     height: 35px;
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;    display: flex;
-    margin-bottom: 100px;
     justify-content: center;
 }
-
-
 

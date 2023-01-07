@@ -25,7 +25,7 @@ class Table4 extends React.Component {
       <table className="table4">
         <tr>
           {tableData.map((d) => (
-            <th>{d.label}</th>
+            <th className={d.key=='Action'?'action-col':''}><p>{d.label}</p></th>
           ))}
         </tr>
         {/* {this.props.form["portActivityTable"].toString()} */}
@@ -33,14 +33,31 @@ class Table4 extends React.Component {
           this.props.form["resultActivityTable"].map((res, i) => (
             <tr>
               {tableData.map((d) => (
-                <td>
-                  <input
-                    name={d.key}
-                    // onChange={(e) => this.props.onchange(i, e)}
-                    value={this.props.form["resultActivityTable"][i][d.key]}
-                    type={d.type}
-                  />
-                </td>
+
+                d.key != 'Action' ? 
+                (
+                  <td >
+                    <input
+                      name={d.key}
+                      // onChange={(e) => this.props.onchange(i, e)}
+                      value={this.props.form["resultActivityTable"][i][d.key]}
+                      type={d.type}
+                    />
+                  </td>
+                )
+                  
+                :  (
+                  <td  className={d.key=='Action'?'action-col':''}>
+                    <div className="action-div"> 
+                      <span class="material-symbols-outlined add-icon">
+                        add
+                      </span>
+                      <span class="material-symbols-outlined delete-icon">
+                          delete
+                      </span>
+                    </div>
+                  </td>
+                )
               ))}
             </tr>
           ))

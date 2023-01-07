@@ -1,9 +1,10 @@
-import "./App.css";
+import "./App.scss";
 import React from "react";
 
 import Table1 from "./components/Table1/Table1";
 import Table2 from "./components/Table2/Table2";
 import UiTransaction from "./components/Table3/Table3";
+import ResultComponent from "./components/Result/Result";
 import TopNavBar from "./components/NavBar/TopNavBar";
 // 3rd
 import "./styles/antd.less";
@@ -135,13 +136,19 @@ function App() {
       <TopNavBar />
       <Table1 />
       <Table2 form={form} onchange={onchange} />
-      <UiTransaction
-        tabs={formTabs}
-        addRow={addRow}
-        onchange={onChangeTable3}
-        form={form}
-      ></UiTransaction>
-      <Table4 form={form}></Table4>
+      <div className="structure">
+          <div>
+            <UiTransaction
+              tabs={formTabs}
+              addRow={addRow}
+              onchange={onChangeTable3}
+              form={form}
+            ></UiTransaction>
+            <Table4 form={form}></Table4>
+          </div>
+            <ResultComponent />
+      </div>
+      
     </div>
   );
 }

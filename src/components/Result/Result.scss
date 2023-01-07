@@ -1,0 +1,116 @@
+
+.check-box-div{
+    padding: 10px;
+    max-width: 20vw;
+    
+    width: auto;
+    margin: auto;
+    min-width: 280px;
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    position: relative;
+
+    .ant-checkbox-group {
+        
+        display: flex;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-content: flex-end;
+        justify-content: flex-start;
+
+        .ant-checkbox-group-item{
+            width: 46%;
+            font-size: 14px !important;
+        }
+    }
+
+    .first-div{
+        display: flex;
+
+        .ant-select{
+            border: 1px solid #6d96b4;
+            width: 150px;
+
+            .ant-input, input[type="number"], .ant-select-selection, .ant-time-picker-input{
+                border: none;
+            }
+        }
+        
+        .btn-import{
+            color: white !important;
+            background: #288ba2;
+            height: 35px;
+            margin-bottom: 0px;
+            border: none;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;    
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .result-div{
+        margin-top: 20px;
+        border: 1px solid;
+        .heading{
+            background: #288ba2;
+            color: white;
+            height: 30px;
+            text-align: center;
+            h6{
+                font-weight: 700;
+                font-size: 20 !important;
+                margin-top: auto;
+                margin-bottom: auto;
+                display: contents;
+            }
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns:auto;
+            &:hover{
+                background: #288ca223;
+                transition: 0.2s ease-in-out;
+            }
+        }
+        .grid-item {
+            font-size: 14px; 
+            font-weight: 700;   
+            margin: 0.1px;
+            padding: 5px;
+            border: 0.1px solid #cac3c3;
+            transition: 0.2s ease-in-out;
+            &:hover{
+                background: white;
+                input{
+                    background: #2b8aa011;
+                }
+                transition: 0.2s ease-in-out;
+            }
+            
+        }
+        .label{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-height: 45px;
+            .label-div{
+                display: inline;
+                flex: 0.7 0.3;
+            }
+    
+            .input{
+                min-width: 30px;
+                border: none;
+                color: black;
+                font-family: none;
+                font-size: 15px;
+                flex: 0.5;
+                
+            }
+        }
+    }
+}      
+
