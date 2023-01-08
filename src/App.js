@@ -18,6 +18,7 @@ import "./styles/context-menu.scss";
 import { data } from "./components/Table3/Constants";
 import Table4 from "./components/Table4/Table4";
 import { tableData } from "./components/Table4/Constants";
+import moment from "moment";
 
 function App() {
   const [form, setFormData] = React.useState({});
@@ -155,21 +156,27 @@ function App() {
       d.toDate = myNewForm["resultActivityTable"][i + 1]
         ? myNewForm["resultActivityTable"][i + 1]["fromDate"]
         : myNewForm["resultActivityTable"][i]["fromDate"];
-      myNewForm["resultActivityTable"][i]["duration"] =
-        new Date(
-          myNewForm["resultActivityTable"][i]["toDate"] +
-            myNewForm["resultActivityTable"][i]["toDatetime"]
-        ) -
+      d.toDatetime = myNewForm["resultActivityTable"][i + 1]
+        ? myNewForm["resultActivityTable"][i + 1]["fromDatetime"]
+        : myNewForm["resultActivityTable"][i]["fromDatetime"];
+
+      myNewForm["resultActivityTable"][i]["duration"] = moment(
+        myNewForm["resultActivityTable"][i]["toDate"] +
+          " " +
+          myNewForm["resultActivityTable"][i]["toDatetime"]
+      ).diff(
         new Date(
           myNewForm["resultActivityTable"][i]["fromDate"] +
+            " " +
             myNewForm["resultActivityTable"][i]["fromDatetime"]
-        );
-      myNewForm["resultActivityTable"][i]["duration"] = new Date(
-        myNewForm["resultActivityTable"][i]["duration"]
-      ).toLocaleTimeString();
+        ),
+        "days"
+      );
+      // myNewForm["resultActivityTable"][i]["duration"] = moment(
+      //   myNewForm["resultActivityTable"][i]["duration"]
+      // ).format("dd:hh:mm");
     });
     setFormData(myNewForm);
-    console.log(JSON.stringify(myNewForm));
   };
 
   const addRow = function (tableIndex) {
@@ -180,7 +187,6 @@ function App() {
     });
     myNewForm["portActivityTable"][tableIndex].push(obj);
     setFormData(myNewForm);
-    console.log(JSON.stringify(myNewForm));
   };
 
   return (
