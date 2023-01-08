@@ -5,11 +5,11 @@ export const data = [
   { label: "Time", key: "time", type: "time" },
   { label: "Day", key: "day", type: "text" },
   { label: "Remark ", key: "remark", type: "text" },
-  {
-    key: "Action",
-    label:"Action",
-    value:"",
-  },
+  // {
+  //   key: "Action",
+  //   label:"Action",
+  //   value:"",
+  // },
 ];
 
 export const resultData = [
@@ -58,9 +58,9 @@ export const resultData = [
     values: [""],
     label: "Despatch amount	",
   },
-  {
-    key: "Action",
-    label:"Action",
-    value:[""],
-  },
+  // {
+  //   key: "Action",
+  //   label:"Action",
+  //   value:[""],
+  // },
 ];

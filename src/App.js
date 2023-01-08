@@ -1,6 +1,5 @@
 import "./App.scss";
 import React from "react";
-
 import Table1 from "./components/Table1/Table1";
 import Table2 from "./components/Table2/Table2";
 import UiTransaction from "./components/Table3/Table3";
@@ -59,12 +58,28 @@ function App() {
         }
       }
       myNewForm["result"] = { ...myNewForm["result"] };
+      let sum = 0;
+      Array.from(Array(100)).map((d, i) => {
+        sum += myNewForm["allowedtime" + i]
+          ? Number(myNewForm["allowedtime" + i])
+          : 0;
+      });
+      myNewForm["totalTime"] = sum;
       setFormData(myNewForm);
       settabs([...t]);
     }
   };
 
   React.useEffect(() => {
+    window.onbeforeunload = function () {
+      return "Data will be Lost";
+      //if we return nothing here (just calling return;) then there will be no pop-up question at all
+      //return;
+    };
+    window.onbeforeunload = function () {
+      return "Data will be Lost";
+    };
+
     let myNewForm = { ...form };
     myNewForm["portActivityTable"] = [[]];
     myNewForm["resultActivityTable"] = [];
