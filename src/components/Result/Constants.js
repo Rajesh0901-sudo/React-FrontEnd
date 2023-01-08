@@ -1,7 +1,6 @@
-
 export const resultData = [
   {
-    key: "Allwoed days",
+    key: "allowedTime",
     values: [""],
     label: "Allwoed days",
   },
@@ -45,5 +44,4 @@ export const resultData = [
     values: [""],
     label: "Despatch amount	",
   },
-  
 ];
