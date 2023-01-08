@@ -1,4 +1,9 @@
 import { divide, multiply } from "./Formula";
+export const portOptions = [
+  { label: 'Singapore', value: 'singapore' },
+  { label: 'Mumbai', value: 'mumbai' },
+  { label: 'Gujrat', value: 'gujrat' },         
+];
 export const terms = [
   {
     Code: "SHINC",
@@ -77,6 +82,8 @@ export const data = [
     key: "portName",
     values: [""],
     label: "Port Name",
+    type: "dropdown",
+    options:portOptions,
   },
   {
     key: "cargoName",

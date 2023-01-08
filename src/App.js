@@ -25,7 +25,9 @@ function App() {
   const [tabs, settabs] = React.useState([]);
   const formTabs = [];
   const onchange = (event, formula, out, args, index) => {
+    console.log(event.name);
     if(event.target.value != ""){
+
 
       let myNewForm = { ...form };
       myNewForm[event.target.name] = event.target.value;
@@ -62,7 +64,7 @@ function App() {
       }
       setFormData(myNewForm);
       
-      console.log(myNewForm);
+      console.log(JSON.stringify(myNewForm));
     }
   };
 
@@ -77,6 +79,7 @@ function App() {
     });
     myNewForm["portActivityTable"][0].push(obj);
     setFormData(myNewForm);
+    console.log(JSON.stringify(myNewForm));
   }, []);
 
   const splitFormula = function (arithmetic) {
@@ -113,6 +116,7 @@ function App() {
         );
       });
       setFormData(myNewForm);
+      console.log(JSON.stringify(myNewForm));
     } catch (error) {
       console.log(error);
     }
@@ -142,6 +146,7 @@ function App() {
         : myNewForm["resultActivityTable"][i]["fromDate"];
     });
     setFormData(myNewForm);
+    console.log(JSON.stringify(myNewForm));
   };
 
   const addRow = function (tableIndex) {
@@ -152,6 +157,7 @@ function App() {
     });
     myNewForm["portActivityTable"][tableIndex].push(obj);
     setFormData(myNewForm);
+    console.log(JSON.stringify(myNewForm));
   };
 
   return (

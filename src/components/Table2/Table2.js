@@ -1,6 +1,6 @@
 import React from "react";
 import { Select } from "antd";
-
+import {portOptions} from '../../Data/portName'
 import { cpDetailsdata, data } from "./Constants";
 import "./Table2.scss";
 import { Tabs } from "antd";
@@ -19,6 +19,7 @@ function App(props) {
 
   const handleAddRow = () => {
     const res = [...state];
+    console.log(JSON.stringify(res));
     res.forEach((d) => {
       d.values.push("");
     });
@@ -65,16 +66,35 @@ function App(props) {
                       <tr>
                         {data.map((res, i) => (
                           <td className={res.key=='Action'?'action-col':""}>
-                            {res.type == "dropdown" ? (
-                              <Select defaultValue="">
-                                {res.options.map((opt) => (
-                                  <Option value={opt.factor} label={opt.Code}>
-                                    <div className="demo-option-label-item">
-                                      {opt.Code}
-                                    </div>
-                                  </Option>
-                                ))}
-                              </Select>
+                            {res.type == "dropdown" ?(
+                                   res.key != 'portName' ?(
+                                    <Select defaultValue="">
+                                      {res.options.map((opt) => (
+                                        <Option value={opt.factor} label={opt.Code}>
+                                          <div className="demo-option-label-item">
+                                            {opt.Code}
+                                          </div>
+                                        </Option>
+                                      ))}
+                                    </Select>
+                                   ):(
+                                    <Select 
+                                        defaultValue="" 
+                                        onChange={(e) => {
+                                          props.onchange(
+                                            e
+                                          );
+                                        }}  
+                                    >
+                                      {res.options.map((opt) => (
+                                        <Option value={opt.value} keylabel={opt.label}>
+                                          <div className="demo-option-label-item">
+                                            {opt.label}
+                                          </div>
+                                        </Option>
+                                      ))}
+                                    </Select>
+                                   )
                             ) : 
                             
                             res.key!='Action' ?(
