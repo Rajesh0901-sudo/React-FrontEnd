@@ -25,8 +25,7 @@ function App() {
   const [tabs, settabs] = React.useState([]);
   const formTabs = [];
   const onchange = (event, formula, out, args, index) => {
-    if(event.target.value != ""){
-
+    if (event.target.value != "") {
       let myNewForm = { ...form };
       myNewForm[event.target.name] = event.target.value;
       let t = [];
@@ -41,11 +40,11 @@ function App() {
       t.forEach((d) => {
         myNewForm["portActivityTable"].push([]);
       });
+
       if (formula) {
         // myNewForm[out + index] = formula(myNewForm[args[0] + index], args[1]);
-        let i=0;
-        for(const form of formula)
-        {
+        let i = 0;
+        for (const form of formula) {
           let formulaStr = form;
           let args = splitFormula(form);
           args.map((data, i) => {
@@ -55,13 +54,15 @@ function App() {
                 myNewForm[data + index] ? myNewForm[data + index] : 0
               );
             }
-          })
+          });
           myNewForm[out[i] + index] = eval(formulaStr);
           i++;
         }
       }
+      myNewForm["result"] = { ...myNewForm["result"] };
+
       setFormData(myNewForm);
-      
+
       console.log(myNewForm);
     }
   };
@@ -70,6 +71,9 @@ function App() {
     let myNewForm = { ...form };
     myNewForm["portActivityTable"] = [[]];
     myNewForm["resultActivityTable"] = [];
+    myNewForm["result"] = {
+      allowedTime: "",
+    };
     let obj = {};
     data.forEach((d, index) => {
       obj[d.key] = "";
@@ -94,14 +98,11 @@ function App() {
   };
 
   const onChangeTable3 = function (index, e, tabIndex) {
-    
     try {
       let myNewForm = { ...form };
       if (e.target.name == "checked") {
-        if(e.target.checked)
-          addRowtotable4(index, tabIndex);
-        else
-          return;
+        if (e.target.checked) addRowtotable4(index, tabIndex);
+        else return;
       }
       console.log(e.target.value);
       myNewForm["portActivityTable"][tabIndex][index][e.target.name] =
@@ -160,18 +161,17 @@ function App() {
       <Table1 />
       <Table2 form={form} onchange={onchange} />
       <div className="structure">
-          <div>
-            <UiTransaction
-              tabs={formTabs}
-              addRow={addRow}
-              onchange={onChangeTable3}
-              form={form}
-            ></UiTransaction>
-            <Table4 form={form}></Table4>
-          </div>
-            <ResultComponent />
+        <div>
+          <UiTransaction
+            tabs={formTabs}
+            addRow={addRow}
+            onchange={onChangeTable3}
+            form={form}
+          ></UiTransaction>
+          <Table4 form={form}></Table4>
+        </div>
+        <ResultComponent form={form} />
       </div>
-      
     </div>
   );
 }
