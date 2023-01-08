@@ -123,6 +123,7 @@ function App(props) {
                                   index
                                 );
                               }}
+                              
                             />
                           ) : (
                             <div className="action-div">
@@ -162,8 +163,8 @@ function App(props) {
                         <td className={res.key == "Action" ? "action-col" : ""}>
                           {res.key != "Action" ? (
                             <input
-                              value={props.form[res.key + index]}
-                              name={res.key + index}
+                              value={props.form[res.key + index]}   
+                              name={res.key + index}              
                               type={res.type}
                               placeholder={res.label}
                               onBlur={(e) => {
@@ -175,8 +176,8 @@ function App(props) {
                                   index
                                 );
                                 
-                              }}
-                             
+                              }} 
+                              disabled={res.disabled}
                             />
                           ) : (
                             <div className="action-div">

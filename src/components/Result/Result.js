@@ -8,9 +8,9 @@ import { resultData } from "./Constants.js";
 const { Option } = Select;
 
 const options = [
-  { label: "Apple", value: "Apple" },
-  { label: "Pear", value: "Pear" },
-  { label: "Orange", value: "Orange" },
+  { label: "Standard", value: "Standard" },
+  { label: "Reversible", value: "Reversible" },
+  { label: "Average", value: "Average" },
 ];
 const laytimeMethodOptions = [
   { label: "Reversible", value: "Reversible" },

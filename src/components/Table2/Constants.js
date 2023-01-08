@@ -115,7 +115,6 @@ export const data = [
     type:'number',
     formula: ["cpQty/LdRateD"],
     outputField: ["allowedtime"],
-    kind:'required'
   },
   {
     key: "LdRateD",
@@ -125,7 +124,6 @@ export const data = [
     formula: ["LdRateD*24", "cpQty/LdRateD"],
     args: ["LdRateD", 24],
     outputField: ["ldRateH", "allowedtime"],
-    kind:'required'
   },
   {
     key: "ldRateH",
@@ -135,7 +133,6 @@ export const data = [
     formula: ["ldRateH/24"],
     args: ["ldRateH", 24],
     outputField: ["LdRateD"],
-    kind:'required'
   },
   {
     key: "term",
@@ -143,7 +140,6 @@ export const data = [
     label: "TERM",
     type: "dropdown",
     options: terms,
-    kind:'required'
   },
   {
     key: "demRatePerDay",
@@ -205,12 +201,14 @@ export const cpDetailsdata = [
     values: [""],
     type:'number',
     label: "Allowed Time",
+    disabled:'disabled'
   },
   {
     key: "Used time",
     values: [""],
     type:'number',
     label: "Used time",
+    disabled:'disabled'
   },
   {
     key: "Deduction",
@@ -223,11 +221,13 @@ export const cpDetailsdata = [
     values: [""],
     type:'number',
     label: "Balance time",
+    disabled:'disabled'
   },
   {
     key: "result@port",
     values: [""],
     label: "result@port",
+    disabled:'disabled'
   },
   // {
   //   key: "Action",

@@ -31,11 +31,14 @@
         display: flex;
 
         .ant-select{
-            border: 1px solid #6d96b4;
+            border: none;
             width: 150px;
+            margin-top: 10px;
+            height: 30px;
 
             .ant-input, input[type="number"], .ant-select-selection, .ant-time-picker-input{
-                border: none;
+               
+                border: 1px solid #6d96b4;
             }
         }
         
