@@ -28,15 +28,14 @@ function App() {
     if (event.target.value != "") {
       let myNewForm = { ...form };
       myNewForm[event.target.name] = event.target.value;
-      let t = [];
+      const t = [];
 
       //assuming max total activity entry is 100
       Array.from(Array(100)).map((d, i) => {
-        form["portName" + i]
-          ? t.push(form["portName" + i] ? form["portName" + i] : "")
+        myNewForm["portName" + i]
+          ? t.push(myNewForm["portName" + i] ? myNewForm["portName" + i] : "")
           : console.log();
       });
-      settabs(t);
       t.forEach((d) => {
         myNewForm["portActivityTable"].push([]);
       });
@@ -60,10 +59,8 @@ function App() {
         }
       }
       myNewForm["result"] = { ...myNewForm["result"] };
-
       setFormData(myNewForm);
-
-      console.log(myNewForm);
+      settabs([...t]);
     }
   };
 

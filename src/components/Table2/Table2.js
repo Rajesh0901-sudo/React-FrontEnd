@@ -1,6 +1,6 @@
 import React from "react";
 import { Select } from "antd";
-import {portOptions} from '../../Data/portName'
+import { portOptions } from "../../Data/portName";
 import { cpDetailsdata, data } from "./Constants";
 import "./Table2.scss";
 import { Tabs } from "antd";
@@ -31,7 +31,6 @@ function App(props) {
     setState(res);
   };
 
-
   const [value1, setValue1] = React.useState("1");
 
   const onChange1 = (value) => {
@@ -39,161 +38,166 @@ function App(props) {
     setValue1(value);
   };
 
-  return (<>
-        <Tabs className="tabss" defaultActiveKey='1' onChange={onChange1} animated={true}>
-          <TabPane key={'1'} value="cargo" tab={<p className="tab-p">Cargo Details</p>}>
-                  
-          </TabPane>
-          <TabPane key={'2'} value="cp" tab={<p className="tab-p">CP Details</p>}>
-                  
-          </TabPane>
-        </Tabs>
-        <div className="secondDiv">
-      <br />
-          {value1 == "1" ? (
-            <table className="table2">
-              <tbody>
-                <tr className="table-heading">
-                  {state.map((d) => (
-                    <th className={d.key=='Action'?'action-col':""}>
-                      <p>{d.label}</p>{" "}
-                    </th>
-                  ))}
-                </tr>
-                {state.length > 0 ? (
-                  state[0].values.map((d, index) => {
-                    return (
-                      <tr>
-                        {data.map((res, i) => (
-                          <td className={res.key=='Action'?'action-col':""}>
-                            {res.type == "dropdown" ?(
-                                   res.key != 'portName' ?(
-                                    <Select defaultValue="">
-                                      {res.options.map((opt) => (
-                                        <Option value={opt.factor} label={opt.Code}>
-                                          <div className="demo-option-label-item">
-                                            {opt.Code}
-                                          </div>
-                                        </Option>
-                                      ))}
-                                    </Select>
-                                   ):(
-                                    <Select 
-                                        defaultValue="" 
-                                        onChange={(e) => {
-                                          props.onchange(
-                                            e
-                                          );
-                                        }}  
-                                    >
-                                      {res.options.map((opt) => (
-                                        <Option value={opt.value} keylabel={opt.label}>
-                                          <div className="demo-option-label-item">
-                                            {opt.label}
-                                          </div>
-                                        </Option>
-                                      ))}
-                                    </Select>
-                                   )
-                            ) : 
-                            
-                            res.key!='Action' ?(
-                              <input
-                                value={props.form[res.key + index]}
-                                name={res.key + index}
-                                placeholder={res.label }
-                                onBlur={(e) => {
-                                  props.onchange(
-                                    e,
-                                    res.formula,
-                                    res.outputField,
-                                    res.args,
-                                    index
-                                  );
+  return (
+    <>
+      <Tabs
+        className="tabss"
+        defaultActiveKey="1"
+        onChange={onChange1}
+        animated={true}
+      >
+        <TabPane
+          key={"1"}
+          value="cargo"
+          tab={<p className="tab-p">Cargo Details</p>}
+        ></TabPane>
+        <TabPane
+          key={"2"}
+          value="cp"
+          tab={<p className="tab-p">CP Details</p>}
+        ></TabPane>
+      </Tabs>
+      <div className="secondDiv">
+        <br />
+        {value1 == "1" ? (
+          <table className="table2">
+            <tbody>
+              <tr className="table-heading">
+                {state.map((d) => (
+                  <th className={d.key == "Action" ? "action-col" : ""}>
+                    <p>{d.label}</p>{" "}
+                  </th>
+                ))}
+              </tr>
+              {state.length > 0 ? (
+                state[0].values.map((d, index) => {
+                  return (
+                    <tr>
+                      {data.map((res, i) => (
+                        <td className={res.key == "Action" ? "action-col" : ""}>
+                          {res.type == "dropdown" ? (
+                            res.key != "portName" ? (
+                              <Select defaultValue="">
+                                {res.options.map((opt) => (
+                                  <Option value={opt.factor} label={opt.Code}>
+                                    <div className="demo-option-label-item">
+                                      {opt.Code}
+                                    </div>
+                                  </Option>
+                                ))}
+                              </Select>
+                            ) : (
+                              <Select
+                                defaultValue=""
+                                name={res.key}
+                                onChange={(e) => {
+                                  props.onchange({
+                                    target: { value: e, name: res.key + i },
+                                  });
                                 }}
-                              />
-                            ):(
-                              <div className="action-div"> 
-                                <span class="material-symbols-outlined add-icon">
-                                  add
-                                </span>
-                                <span class="material-symbols-outlined delete-icon">
-                                    delete
-                                </span>
-                              </div>
+                              >
+                                {res.options.map((opt) => (
+                                  <Option
+                                    value={opt.value}
+                                    keylabel={opt.label}
+                                  >
+                                    <div className="demo-option-label-item">
+                                      {opt.label}
+                                    </div>
+                                  </Option>
+                                ))}
+                              </Select>
                             )
-                      
-                            }
-                          </td>
-                        ))}
-                      </tr>
-                    );
-                  })
-                ) : (
-                  <h1>Load</h1>
-                )}
-              </tbody>
-            </table>
-          ) : (
-            <table className="table2">
-              <tbody>
-                <tr className="table-heading">
-                  {state2.map((d) => (
-                    <th className={d.key=='Action'?'action-col':""}>
-                      <p>{d.label}</p>{" "}
-                    </th>
-                  ))}
-                </tr>
-                {state2.length > 0 ? (
-                  state2[0].values.map((d, index) => {
-                    return (
-                      <tr>
-                        {cpDetailsdata.map((res, i) => (
-                          <td className={res.key=='Action'?'action-col':""}>
-                            {res.key != 'Action' ?
-                                (
-                                  <input
-                                    value={props.form[res.key + index]}
-                                    name={res.key + index}
-                                    placeholder={res.label }
-                                    onBlur={(e) => {
-                                      props.onchange(
-                                        e,
-                                        res.formula,
-                                        res.outputField,
-                                        res.args,
-                                        index
-                                      );
-                                    }}
-                                  />
-                                )
-                                :
-                                (
-                                  <div className="action-div"> 
-                                    <span class="material-symbols-outlined add-icon">
-                                      add
-                                    </span>
-                                    <span class="material-symbols-outlined delete-icon">
-                                        delete
-                                    </span>
-                                  </div>
-                                )   
-                            }
-                            
-                          </td>
-                        ))}
-                      </tr>
-                    );
-                  })
-                ) : (
-                  <h1>Load</h1>
-                )}
-              </tbody>
-            </table>
-          )}
-          <a onClick={handleAddRow} class="btn btn-primary">
-            Add Row
-          </a>
+                          ) : res.key != "Action" ? (
+                            <input
+                              value={props.form[res.key + index]}
+                              name={res.key + index}
+                              placeholder={res.label}
+                              onBlur={(e) => {
+                                props.onchange(
+                                  e,
+                                  res.formula,
+                                  res.outputField,
+                                  res.args,
+                                  index
+                                );
+                              }}
+                            />
+                          ) : (
+                            <div className="action-div">
+                              <span class="material-symbols-outlined add-icon">
+                                add
+                              </span>
+                              <span class="material-symbols-outlined delete-icon">
+                                delete
+                              </span>
+                            </div>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })
+              ) : (
+                <h1>Load</h1>
+              )}
+            </tbody>
+          </table>
+        ) : (
+          <table className="table2">
+            <tbody>
+              <tr className="table-heading">
+                {state2.map((d) => (
+                  <th className={d.key == "Action" ? "action-col" : ""}>
+                    <p>{d.label}</p>{" "}
+                  </th>
+                ))}
+              </tr>
+              {state2.length > 0 ? (
+                state2[0].values.map((d, index) => {
+                  return (
+                    <tr>
+                      {cpDetailsdata.map((res, i) => (
+                        <td className={res.key == "Action" ? "action-col" : ""}>
+                          {res.key != "Action" ? (
+                            <input
+                              value={props.form[res.key + index]}
+                              name={res.key + index}
+                              placeholder={res.label}
+                              onBlur={(e) => {
+                                props.onchange(
+                                  e,
+                                  res.formula,
+                                  res.outputField,
+                                  res.args,
+                                  index
+                                );
+                              }}
+                            />
+                          ) : (
+                            <div className="action-div">
+                              <span class="material-symbols-outlined add-icon">
+                                add
+                              </span>
+                              <span class="material-symbols-outlined delete-icon">
+                                delete
+                              </span>
+                            </div>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })
+              ) : (
+                <h1>Load</h1>
+              )}
+            </tbody>
+          </table>
+        )}
+        <a onClick={handleAddRow} class="btn btn-primary">
+          Add Row
+        </a>
       </div>
     </>
   );
