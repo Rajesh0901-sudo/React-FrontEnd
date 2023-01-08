@@ -140,6 +140,18 @@ function App() {
       d.toDate = myNewForm["resultActivityTable"][i + 1]
         ? myNewForm["resultActivityTable"][i + 1]["fromDate"]
         : myNewForm["resultActivityTable"][i]["fromDate"];
+      myNewForm["resultActivityTable"][i]["duration"] =
+        new Date(
+          myNewForm["resultActivityTable"][i]["toDate"] +
+            myNewForm["resultActivityTable"][i]["toDatetime"]
+        ) -
+        new Date(
+          myNewForm["resultActivityTable"][i]["fromDate"] +
+            myNewForm["resultActivityTable"][i]["fromDatetime"]
+        );
+      myNewForm["resultActivityTable"][i]["duration"] = new Date(
+        myNewForm["resultActivityTable"][i]["duration"]
+      ).toLocaleTimeString();
     });
     setFormData(myNewForm);
     console.log(JSON.stringify(myNewForm));
