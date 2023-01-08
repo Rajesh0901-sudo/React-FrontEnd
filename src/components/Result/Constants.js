@@ -2,7 +2,7 @@ export const resultData = [
   {
     key: "allowedTime",
     values: [""],
-    label: "Allwoed days",
+    label: "Allowed days",
     type:'number',
   },
   {

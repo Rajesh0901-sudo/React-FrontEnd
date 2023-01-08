@@ -113,15 +113,23 @@ td.action-col{
     color: black;
     height: 30px;
     margin-top: 10px;
-    width: 755px;
-    margin-left: 295px;
+    width: 785px;
+    margin-left: 190px;
 
     p{
-        position: absolute;
+        display: inline-block;
         top:7px;
-        left: 55px;
+        max-width: 50px;
+        margin-left: 70px;
         font-size: 18px;
         opacity: 5;
+    }
+    .total-col{
+        display: inline;
+    }
+    .total{
+        margin-left:140px;
+        font-size: 16px;
     }
 }
 .btn{

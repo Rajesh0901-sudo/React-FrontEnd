@@ -204,7 +204,7 @@ export const cpDetailsdata = [
     disabled:'disabled'
   },
   {
-    key: "Used time",
+    key: "Used_time",
     values: [""],
     type:'number',
     label: "Used time",
@@ -217,7 +217,7 @@ export const cpDetailsdata = [
     label: "Deduction",
   },
   {
-    key: "Balance time",
+    key: "Balance_time",
     values: [""],
     type:'number',
     label: "Balance time",

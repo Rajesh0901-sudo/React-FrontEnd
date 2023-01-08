@@ -29,7 +29,7 @@ function App() {
       let myNewForm = { ...form };
       myNewForm[event.target.name] = event.target.value;
       const t = [];
-
+      console.log(myNewForm);
       //assuming max total activity entry is 100
       Array.from(Array(100)).map((d, i) => {
         myNewForm["portName" + i]
@@ -59,13 +59,23 @@ function App() {
         }
       }
       myNewForm["result"] = { ...myNewForm["result"] };
-      let sum = 0;
+      let allowedSum = 0;
+      let usedSum = 0;
+      let balanceSum = 0;
+      let deductSum = 0;
+
       Array.from(Array(100)).map((d, i) => {
-        sum += myNewForm["allowedtime" + i]
-          ? Number(myNewForm["allowedtime" + i])
-          : 0;
+        allowedSum += myNewForm["allowedtime" + i] ? Number(myNewForm["allowedtime" + i]) : 0;
+        usedSum += myNewForm["Used_time" + i] ? Number(myNewForm["Used_time" + i]) : 0;
+        balanceSum += myNewForm["Balance_time" + i] ? Number(myNewForm["Balance_time" + i]) : 0;
+        deductSum +=  myNewForm["Deduction" + i] ? Number(myNewForm["Deduction" + i]) : 0;
       });
-      myNewForm["totalTime"] = sum;
+     
+      myNewForm["totalTime"] = allowedSum;
+      myNewForm["Used_time"] = usedSum;
+      myNewForm["Balance_time"] = balanceSum;
+      myNewForm["Deduction"] = deductSum;
+
       setFormData(myNewForm);
       settabs([...t]);
     }
@@ -86,6 +96,11 @@ function App() {
     myNewForm["resultActivityTable"] = [];
     myNewForm["result"] = {
       allowedTime: "",
+      Used_time: "",
+      Deduction: "",
+      Balance_time:""
+
+
     };
     let obj = {};
     data.forEach((d, index) => {

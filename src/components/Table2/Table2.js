@@ -200,7 +200,13 @@ function App(props) {
             </tbody>
             <div className="totalDiv">
               <p>Total</p>
-              <div>{props.form["totalTime"]}</div>
+              <div className="total-col">
+                <p className="total">{props.form["totalTime"]}</p>
+                <p className="total">{props.form["Used_time"]}</p> 
+                <p className="total">{props.form["Balance_time"]}</p>
+                <p className="total">{props.form["Deduction"]}</p>
+                
+              </div>
             </div>
           </table>
         )}
