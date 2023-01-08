@@ -144,11 +144,13 @@ export const data = [
     key: "laycan_start",
     values: [""],
     label: "Laycan start",
+    type:'date'
   },
   {
     key: "laycan_end",
     values: [""],
     label: "Laycan end",
+    type:'date'
   },
   {
     key: "Action",
@@ -168,11 +170,13 @@ export const cpDetailsdata = [
     key: "laytimeCommence",
     values: [""],
     label: "Laytime commence",
+    type:'date'
   },
   {
     key: "laytimeCompleted",
     values: [""],
     label: "Laytime completed",
+    type:'date'
   },
   {
     key: "allowedtime",

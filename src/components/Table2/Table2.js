@@ -101,6 +101,7 @@ function App(props) {
                               <input
                                 value={props.form[res.key + index]}
                                 name={res.key + index}
+                                type={res.type}
                                 placeholder={res.label }
                                 onBlur={(e) => {
                                   props.onchange(
@@ -155,6 +156,7 @@ function App(props) {
                                   <input
                                     value={props.form[res.key + index]}
                                     name={res.key + index}
+                                    type={res.type}
                                     placeholder={res.label }
                                     onBlur={(e) => {
                                       props.onchange(
