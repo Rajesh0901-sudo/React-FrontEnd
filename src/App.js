@@ -1,5 +1,5 @@
 import "./App.scss";
-import React from "react"; 
+import React from "react";
 import Table1 from "./components/Table1/Table1";
 import Table2 from "./components/Table2/Table2";
 import UiTransaction from "./components/Table3/Table3";
@@ -18,8 +18,7 @@ import "./styles/context-menu.scss";
 import { data } from "./components/Table3/Constants";
 import Table4 from "./components/Table4/Table4";
 import { tableData } from "./components/Table4/Constants";
-
-
+import moment from "moment";
 
 function App() {
   const [form, setFormData] = React.useState({});
@@ -60,22 +59,28 @@ function App() {
         }
       }
       myNewForm["result"] = { ...myNewForm["result"] };
+      let sum = 0;
+      Array.from(Array(100)).map((d, i) => {
+        sum += myNewForm["allowedtime" + i]
+          ? Number(myNewForm["allowedtime" + i])
+          : 0;
+      });
+      myNewForm["totalTime"] = sum;
       setFormData(myNewForm);
       settabs([...t]);
     }
   };
 
   React.useEffect(() => {
-
-    window.onbeforeunload = function() {
+    window.onbeforeunload = function () {
       return "Data will be Lost";
       //if we return nothing here (just calling return;) then there will be no pop-up question at all
       //return;
-    }
-    window.onbeforeunload = function() {
-        return "Data will be Lost";
-    }
-    
+    };
+    window.onbeforeunload = function () {
+      return "Data will be Lost";
+    };
+
     let myNewForm = { ...form };
     myNewForm["portActivityTable"] = [[]];
     myNewForm["resultActivityTable"] = [];
@@ -151,9 +156,27 @@ function App() {
       d.toDate = myNewForm["resultActivityTable"][i + 1]
         ? myNewForm["resultActivityTable"][i + 1]["fromDate"]
         : myNewForm["resultActivityTable"][i]["fromDate"];
+      d.toDatetime = myNewForm["resultActivityTable"][i + 1]
+        ? myNewForm["resultActivityTable"][i + 1]["fromDatetime"]
+        : myNewForm["resultActivityTable"][i]["fromDatetime"];
+
+      myNewForm["resultActivityTable"][i]["duration"] = moment(
+        myNewForm["resultActivityTable"][i]["toDate"] +
+          " " +
+          myNewForm["resultActivityTable"][i]["toDatetime"]
+      ).diff(
+        new Date(
+          myNewForm["resultActivityTable"][i]["fromDate"] +
+            " " +
+            myNewForm["resultActivityTable"][i]["fromDatetime"]
+        ),
+        "days"
+      );
+      // myNewForm["resultActivityTable"][i]["duration"] = moment(
+      //   myNewForm["resultActivityTable"][i]["duration"]
+      // ).format("dd:hh:mm");
     });
     setFormData(myNewForm);
-    console.log(JSON.stringify(myNewForm));
   };
 
   const addRow = function (tableIndex) {
@@ -164,7 +187,6 @@ function App() {
     });
     myNewForm["portActivityTable"][tableIndex].push(obj);
     setFormData(myNewForm);
-    console.log(JSON.stringify(myNewForm));
   };
 
   return (

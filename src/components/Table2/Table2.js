@@ -76,7 +76,7 @@ function App(props) {
                       {data.map((res, i) => (
                         <td className={res.key == "Action" ? "action-col" : ""}>
                           {res.type == "dropdown" ? (
-                            res.key != "portName" && res.key !='portFunc' ? (
+                            res.key != "portName" && res.key != "portFunc" ? (
                               <Select defaultValue="">
                                 {res.options.map((opt) => (
                                   <Option value={opt.factor} label={opt.Code}>
@@ -199,7 +199,8 @@ function App(props) {
               )}
             </tbody>
             <div className="totalDiv">
-                <p>Total</p>
+              <p>Total</p>
+              <div>{props.form["totalTime"]}</div>
             </div>
           </table>
         )}
