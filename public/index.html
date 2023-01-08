@@ -36,6 +36,19 @@
     -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <title>React Project</title>
+    <style type = "text/css">
+     
+   
+         @media print {
+            p.bodyText {font-family:georgia, times, serif;}
+            body {
+              color: red;
+            }
+         }
+         @media screen, print {
+            p.bodyText {font-size:10pt}
+         }
+   </style>
   </head>
   <body style="min-width: 1200px;">
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -50,15 +63,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script type="text/javascript">
-      window.onbeforeunload = function() {
-        return "Data will be Lost";
-        //if we return nothing here (just calling return;) then there will be no pop-up question at all
-        //return;
-      }
-      window.onbeforeunload = function() {
-          return "Data will be Lost";
-      }
-  </script>
+   
   </body>
 </html>

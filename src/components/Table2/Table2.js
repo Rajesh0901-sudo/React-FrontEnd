@@ -76,7 +76,7 @@ function App(props) {
                       {data.map((res, i) => (
                         <td className={res.key == "Action" ? "action-col" : ""}>
                           {res.type == "dropdown" ? (
-                            res.key != "portName" ? (
+                            res.key != "portName" && res.key !='portFunc' ? (
                               <Select defaultValue="">
                                 {res.options.map((opt) => (
                                   <Option value={opt.factor} label={opt.Code}>
@@ -112,6 +112,7 @@ function App(props) {
                             <input
                               value={props.form[res.key + index]}
                               name={res.key + index}
+                              type={res.type}
                               placeholder={res.label}
                               onBlur={(e) => {
                                 props.onchange(
@@ -163,6 +164,7 @@ function App(props) {
                             <input
                               value={props.form[res.key + index]}
                               name={res.key + index}
+                              type={res.type}
                               placeholder={res.label}
                               onBlur={(e) => {
                                 props.onchange(
@@ -172,7 +174,9 @@ function App(props) {
                                   res.args,
                                   index
                                 );
+                                
                               }}
+                             
                             />
                           ) : (
                             <div className="action-div">
@@ -193,6 +197,9 @@ function App(props) {
                 <h1>Load</h1>
               )}
             </tbody>
+            <div className="totalDiv">
+                <p>Total</p>
+            </div>
           </table>
         )}
         <a onClick={handleAddRow} class="btn btn-primary">

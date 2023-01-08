@@ -1,6 +1,5 @@
 import "./App.scss";
-import React from "react";
-
+import React from "react"; 
 import Table1 from "./components/Table1/Table1";
 import Table2 from "./components/Table2/Table2";
 import UiTransaction from "./components/Table3/Table3";
@@ -19,6 +18,8 @@ import "./styles/context-menu.scss";
 import { data } from "./components/Table3/Constants";
 import Table4 from "./components/Table4/Table4";
 import { tableData } from "./components/Table4/Constants";
+
+
 
 function App() {
   const [form, setFormData] = React.useState({});
@@ -65,6 +66,16 @@ function App() {
   };
 
   React.useEffect(() => {
+
+    window.onbeforeunload = function() {
+      return "Data will be Lost";
+      //if we return nothing here (just calling return;) then there will be no pop-up question at all
+      //return;
+    }
+    window.onbeforeunload = function() {
+        return "Data will be Lost";
+    }
+    
     let myNewForm = { ...form };
     myNewForm["portActivityTable"] = [[]];
     myNewForm["resultActivityTable"] = [];

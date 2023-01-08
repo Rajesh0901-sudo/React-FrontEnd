@@ -125,12 +125,9 @@ class ResultDiv extends React.Component {
             ) : (
               <h1>asd</h1>
             )}
-            <button
-              onClick={() => this.props.addRow(this.state.tabIndex)}
-              className="addRow"
-            >
-              <p>Add Row</p>
-            </button>
+            <a  onClick={() => this.props.addRow(this.state.tabIndex)} class="btn btn-primary">
+              Add Row
+            </a>
           </table>
         </div>
       </>

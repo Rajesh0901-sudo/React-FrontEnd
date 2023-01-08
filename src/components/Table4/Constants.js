@@ -8,9 +8,9 @@ export const tableData = [
   { label: "Deduction%" },
   { label: "Deduction time" },
   { label: "Remark", key: "remark" },
-  {
-    key: "Action",
-    label:"Action",
-    value:"",
-  },
+  // {
+  //   key: "Action",
+  //   label:"Action",
+  //   value:"",
+  // },
 ];
