@@ -39,9 +39,21 @@ class ResultComponent extends React.Component {
       },
     };
   }
+  onResultChange(e){
+    if(e.target.name){
+      const st = { ...this.state };
+      st["result"][e.target.name] = e.target.value;
+    }
+    console.log(e.target.value);
+
+  }
   componentWillReceiveProps() {
     const st = { ...this.state };
     st["result"]["allowedTime"] = this.props.form["totalTime"];
+    st["result"]["Used_days"] = this.props.form["duration"];
+    st["result"]["Balance_days"] = this.props.form["Balance_days"];
+    st["result"]["Final_result"] =  this.props.form["Final_result"];
+
     this.setState(st);
     console.log(st);
   }
@@ -77,6 +89,8 @@ class ResultComponent extends React.Component {
                       <input
                         value={this.state["result"][data.key]}
                         className="input"
+                        onChange={(e)=>{this.onResultClick(e)}}
+                       
                         type={data.type}
                         placeholder={data.label}
                         name={data.key}

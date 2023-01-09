@@ -68,7 +68,14 @@ class Table4 extends React.Component {
           </table>
           {this.props.form["totalDurationResult"] ? (
             <div>
-              Total :{this.props.form["totalDurationResult"].toString()}
+              <div className="totalDiv4">
+                <p>Total</p>
+                <div className="total-col">
+                  <p className="total">{this.props.form["totalDurationResult"]}</p>
+                  <p className="total">jhb</p> 
+                  
+                </div>
+              </div>
             </div>
           ) : (
             <h1></h1>
