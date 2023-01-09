@@ -66,6 +66,13 @@ class Table4 extends React.Component {
         )}
         
       </table>
+      <div className="totalDiv4">
+          <p>Total</p>
+          <div className="total-col">
+            <p className="total">dfsdf</p>
+            <p className="total">gdfgdf</p>             
+          </div>
+        </div>
     </div>
       </>
     );

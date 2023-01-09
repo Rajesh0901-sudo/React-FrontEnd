@@ -1,8 +1,8 @@
 import { divide, multiply } from "./Formula";
 export const portOptions = [
-  { label: 'Singapore', value: 'singapore' },
-  { label: 'Mumbai', value: 'mumbai' },
-  { label: 'Gujrat', value: 'gujrat' },         
+  { label: 'Singapore', value: 'Singapore' },
+  { label: 'Mumbai', value: 'Mumbai' },
+  { label: 'Gujrat', value: 'Gujrat' },         
 ];
 export const cpFuncOptions = [
   { label: 'Loading', value: 'Loading' },
@@ -178,11 +178,10 @@ export const data = [
 ];
 export const cpDetailsdata = [
   {
-    key: "cargoPortName",
+    key: "portName",
     values: [""],
     label: "Port Name",
-    formula: "portName",
-    outputField: "cargoPortName",
+
   },
   {
     key: "laytimeCommence",

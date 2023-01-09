@@ -163,7 +163,7 @@ function App(props) {
                         <td className={res.key == "Action" ? "action-col" : ""}>
                           {res.key != "Action" ? (
                             <input
-                              value={props.form[res.key + index]}   
+                              value={ (res.key + index) in props.form ? props.form[res.key + index] : ""}   
                               name={res.key + index}              
                               type={res.type}
                               placeholder={res.label}

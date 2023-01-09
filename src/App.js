@@ -133,7 +133,16 @@ function App() {
         if (e.target.checked) addRowtotable4(index, tabIndex);
         else return;
       }
-      console.log(e.target.value);
+      const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      if(e.target.name=='fromDate'){
+        const d = new Date(e.target.value);
+        let day = d.getDay();
+        console.log(weekday[day]);
+        myNewForm["portActivityTable"][tabIndex][index]['day'] = weekday[day];
+
+      }
+      
+      
       myNewForm["portActivityTable"][tabIndex][index][e.target.name] =
         e.target.value;
       myNewForm["portActivityTable"][tabIndex].sort(function (a, b) {
