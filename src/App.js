@@ -26,67 +26,72 @@ function App() {
   const [tabs, settabs] = React.useState([]);
   const formTabs = [];
   const onchange = (event, formula, out, args, index) => {
-    if (event.target.value != "") {
-      let myNewForm = { ...form };
-      myNewForm[event.target.name] = event.target.value;
-      const t = [];
-      console.log(myNewForm);
-      //assuming max total activity entry is 100
-      Array.from(Array(100)).map((d, i) => {
-        myNewForm["portName" + i]
-          ? t.push(myNewForm["portName" + i] ? myNewForm["portName" + i] : "")
-          : console.log();
-      });
-      t.forEach((d) => {
-        myNewForm["portActivityTable"].push([]);
-      });
+    try {
+      if (event.target.value != "") {
+        let myNewForm = { ...form };
+        myNewForm[event.target.name] = event.target.value;
+        const t = [];
+        console.log(myNewForm);
+        //assuming max total activity entry is 100
+        Array.from(Array(100)).map((d, i) => {
+          myNewForm["portName" + i]
+            ? t.push(myNewForm["portName" + i] ? myNewForm["portName" + i] : "")
+            : console.log();
+        });
+        t.forEach((d) => {
+          myNewForm["portActivityTable"].push([]);
+        });
 
-      if (formula) {
-        // myNewForm[out + index] = formula(myNewForm[args[0] + index], args[1]);
-        let i = 0;
-        for (const form of formula) {
-          let formulaStr = form;
-          let args = splitFormula(form);
-          args.map((data, i) => {
-            if (typeof data == "string" && isNaN(data)) {
-              formulaStr = formulaStr.replace(
-                data,
-                myNewForm[data + index] ? myNewForm[data + index] : 0
-              );
-            }
-          });
-          myNewForm[out[i] + index] = eval(formulaStr);
-          i++;
+        if (formula) {
+          // myNewForm[out + index] = formula(myNewForm[args[0] + index], args[1]);
+          let i = 0;
+          for (const form of formula) {
+            let formulaStr = form;
+            let args = splitFormula(form);
+            args.map((data, i) => {
+              if (typeof data == "string" && isNaN(data)) {
+                formulaStr = formulaStr.replace(
+                  data,
+                  myNewForm[data + index] ? myNewForm[data + index] : 0
+                );
+              }
+            });
+            myNewForm[out[i] + index] = eval(formulaStr);
+            i++;
+          }
         }
+        myNewForm["result"] = { ...myNewForm["result"] };
+        let allowedSum = 0;
+        let usedSum = 0;
+        let balanceSum = 0;
+        let deductSum = 0;
+
+        Array.from(Array(100)).map((d, i) => {
+          allowedSum += myNewForm["allowedtime" + i]
+            ? Number(myNewForm["allowedtime" + i])
+            : 0;
+          usedSum += myNewForm["Used_time" + i]
+            ? Number(myNewForm["Used_time" + i])
+            : 0;
+          balanceSum += myNewForm["Balance_time" + i]
+            ? Number(myNewForm["Balance_time" + i])
+            : 0;
+          deductSum += myNewForm["Deduction" + i]
+            ? Number(myNewForm["Deduction" + i])
+            : 0;
+        });
+
+        myNewForm["totalTime"] = allowedSum;
+        myNewForm["Used_time"] = usedSum;
+        myNewForm["Balance_time"] = balanceSum;
+        myNewForm["Deduction"] = deductSum;
+
+        setFormData(myNewForm);
+        console.log(myNewForm);
+        settabs([...t]);
       }
-      myNewForm["result"] = { ...myNewForm["result"] };
-      let allowedSum = 0;
-      let usedSum = 0;
-      let balanceSum = 0;
-      let deductSum = 0;
-
-      Array.from(Array(100)).map((d, i) => {
-        allowedSum += myNewForm["allowedtime" + i]
-          ? Number(myNewForm["allowedtime" + i])
-          : 0;
-        usedSum += myNewForm["Used_time" + i]
-          ? Number(myNewForm["Used_time" + i])
-          : 0;
-        balanceSum += myNewForm["Balance_time" + i]
-          ? Number(myNewForm["Balance_time" + i])
-          : 0;
-        deductSum += myNewForm["Deduction" + i]
-          ? Number(myNewForm["Deduction" + i])
-          : 0;
-      });
-
-      myNewForm["totalTime"] = allowedSum;
-      myNewForm["Used_time"] = usedSum;
-      myNewForm["Balance_time"] = balanceSum;
-      myNewForm["Deduction"] = deductSum;
-
-      setFormData(myNewForm);
-      settabs([...t]);
+    } catch (error) {
+      console.log(error);
     }
   };
 
