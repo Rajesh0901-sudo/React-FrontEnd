@@ -66,12 +66,20 @@ function App() {
       let deductSum = 0;
 
       Array.from(Array(100)).map((d, i) => {
-        allowedSum += myNewForm["allowedtime" + i] ? Number(myNewForm["allowedtime" + i]) : 0;
-        usedSum += myNewForm["Used_time" + i] ? Number(myNewForm["Used_time" + i]) : 0;
-        balanceSum += myNewForm["Balance_time" + i] ? Number(myNewForm["Balance_time" + i]) : 0;
-        deductSum +=  myNewForm["Deduction" + i] ? Number(myNewForm["Deduction" + i]) : 0;
+        allowedSum += myNewForm["allowedtime" + i]
+          ? Number(myNewForm["allowedtime" + i])
+          : 0;
+        usedSum += myNewForm["Used_time" + i]
+          ? Number(myNewForm["Used_time" + i])
+          : 0;
+        balanceSum += myNewForm["Balance_time" + i]
+          ? Number(myNewForm["Balance_time" + i])
+          : 0;
+        deductSum += myNewForm["Deduction" + i]
+          ? Number(myNewForm["Deduction" + i])
+          : 0;
       });
-     
+
       myNewForm["totalTime"] = allowedSum;
       myNewForm["Used_time"] = usedSum;
       myNewForm["Balance_time"] = balanceSum;
@@ -100,9 +108,7 @@ function App() {
       allowedTime: "",
       Used_time: "",
       Deduction: "",
-      Balance_time:""
-
-
+      Balance_time: "",
     };
     let obj = {};
     data.forEach((d, index) => {
@@ -137,16 +143,22 @@ function App() {
           return;
         } else return;
       }
-      const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-      if(e.target.name=='fromDate'){
+      const weekday = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      if (e.target.name == "fromDate") {
         const d = new Date(e.target.value);
         let day = d.getDay();
         console.log(weekday[day]);
-        myNewForm["portActivityTable"][tabIndex][index]['day'] = weekday[day];
-
+        myNewForm["portActivityTable"][tabIndex][index]["day"] = weekday[day];
       }
-      
-      
+
       myNewForm["portActivityTable"][tabIndex][index][e.target.name] =
         e.target.value;
       myNewForm["portActivityTable"][tabIndex].sort(function (a, b) {
@@ -164,7 +176,9 @@ function App() {
 
   const addRowtotable4 = function (index, tabi) {
     let myNewForm = { ...form };
+    myNewForm["portActivityTable"][tabi][index]["checked"] = true;
     let obj = {};
+    let sum = 0;
     var totalDuartion = 0;
     tableData.forEach((data) => {
       obj[data.key] = "";
@@ -173,7 +187,7 @@ function App() {
     obj["fromDatetime"] = form["portActivityTable"][tabi][index]["time"];
     obj["toDatetime"] = form["portActivityTable"][tabi][index]["time"];
     obj["activity"] = form["portActivityTable"][tabi][index]["activity"];
-
+    var totalDaysInMill = form["totalTime"] * 24 * 60 * 60 * 1000;
     myNewForm["resultActivityTable"].push(obj);
     myNewForm["resultActivityTable"].sort(function (a, b) {
       return -(
@@ -202,20 +216,10 @@ function App() {
           )
         )
       );
-
-      //Get Days and subtract from duration
-      var days = duration.asDays();
-      // duration.subtract(moment.duration(days, "days"));
-
-      // //Get hours and subtract from duration
-      // var hours = duration.hours();
-      // duration.subtract(moment.duration(hours, "hours"));
-
-      // //Get Minutes and subtract from duration
-      // var minutes = duration.minutes();
-      // duration.subtract(moment.duration(minutes, "minutes"));
+      sum += duration.asMilliseconds();
+      if (sum > totalDaysInMill)
+        myNewForm["resultActivityTable"][i]["demarage"] = true;
       totalDuartion += duration.asDays().toFixed(0);
-
       myNewForm["resultActivityTable"][i]["duration"] =
         duration.format("D:H:m");
     });
