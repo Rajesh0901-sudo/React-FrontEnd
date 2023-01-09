@@ -1,5 +1,6 @@
 import "./App.scss";
 import React from "react";
+import momentDurationFormatSetup from "moment-duration-format";
 import Table1 from "./components/Table1/Table1";
 import Table2 from "./components/Table2/Table2";
 import UiTransaction from "./components/Table3/Table3";
@@ -72,6 +73,7 @@ function App() {
   };
 
   React.useEffect(() => {
+    momentDurationFormatSetup(moment);
     window.onbeforeunload = function () {
       return "Data will be Lost";
       //if we return nothing here (just calling return;) then there will be no pop-up question at all
@@ -115,8 +117,10 @@ function App() {
     try {
       let myNewForm = { ...form };
       if (e.target.name == "checked") {
-        if (e.target.checked) addRowtotable4(index, tabIndex);
-        else return;
+        if (e.target.checked) {
+          addRowtotable4(index, tabIndex);
+          return;
+        } else return;
       }
       console.log(e.target.value);
       myNewForm["portActivityTable"][tabIndex][index][e.target.name] =
@@ -137,6 +141,7 @@ function App() {
   const addRowtotable4 = function (index, tabi) {
     let myNewForm = { ...form };
     let obj = {};
+    var totalDuartion = 0;
     tableData.forEach((data) => {
       obj[data.key] = "";
     });
@@ -160,22 +165,38 @@ function App() {
         ? myNewForm["resultActivityTable"][i + 1]["fromDatetime"]
         : myNewForm["resultActivityTable"][i]["fromDatetime"];
 
-      myNewForm["resultActivityTable"][i]["duration"] = moment(
-        myNewForm["resultActivityTable"][i]["toDate"] +
-          " " +
-          myNewForm["resultActivityTable"][i]["toDatetime"]
-      ).diff(
-        new Date(
-          myNewForm["resultActivityTable"][i]["fromDate"] +
+      var duration = moment.duration(
+        moment(
+          myNewForm["resultActivityTable"][i]["toDate"] +
             " " +
-            myNewForm["resultActivityTable"][i]["fromDatetime"]
-        ),
-        "days"
+            myNewForm["resultActivityTable"][i]["toDatetime"]
+        ).diff(
+          moment(
+            myNewForm["resultActivityTable"][i]["fromDate"] +
+              " " +
+              myNewForm["resultActivityTable"][i]["fromDatetime"]
+          )
+        )
       );
-      // myNewForm["resultActivityTable"][i]["duration"] = moment(
-      //   myNewForm["resultActivityTable"][i]["duration"]
-      // ).format("dd:hh:mm");
+
+      //Get Days and subtract from duration
+      var days = duration.asDays();
+      // duration.subtract(moment.duration(days, "days"));
+
+      // //Get hours and subtract from duration
+      // var hours = duration.hours();
+      // duration.subtract(moment.duration(hours, "hours"));
+
+      // //Get Minutes and subtract from duration
+      // var minutes = duration.minutes();
+      // duration.subtract(moment.duration(minutes, "minutes"));
+      totalDuartion += duration.asDays().toFixed(0);
+
+      myNewForm["resultActivityTable"][i]["duration"] =
+        duration.format("D:H:m");
     });
+    myNewForm["totalDurationResult"] = totalDuartion;
+    console.log(myNewForm);
     setFormData(myNewForm);
   };
 
