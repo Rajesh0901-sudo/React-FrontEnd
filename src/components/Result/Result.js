@@ -28,8 +28,14 @@ class ResultComponent extends React.Component {
     this.state = {
       result: {
         allowedTime: 0,
-        Used_time:0,
-        Balance_time:0,
+        Used_days:0,
+        Balance_days:0,
+        Previous_claim:0,
+        Final_result:0,
+        Demurrage_amt:0,
+        Despatch_amount:0,
+        Other_tax:0,
+        Final_Net_amount:0,
       },
     };
   }
@@ -65,7 +71,7 @@ class ResultComponent extends React.Component {
             {this.state["result"] ? (
               resultData.map((data, i) => {
                 return (
-                  <div key={data.index} className="grid-item">
+                  <div className="grid-item">
                     <label className="label">
                       <div className="label-div">{data.label} :</div>
                       <input
@@ -76,6 +82,7 @@ class ResultComponent extends React.Component {
                         name={data.key}
                       />
                     </label>
+                    {data.key}
                   </div>
                 );
               })

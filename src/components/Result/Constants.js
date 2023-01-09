@@ -18,23 +18,23 @@ export const resultData = [
     type:'number',
   },
   {
-    key: "Previous_claim ",
+    key: "Previous_claim",
     values: [""],
     label: "Previous claim ",
     type:'number',
   },
   {
-    key: "Final_result	 ",
+    key: "Final_result",
     values: [""],
-    label: "Previous claim ", type:'number',
+    label: "Final Result ", type:'number',
   },
   {
-    key: "Demurrage_amt	",
+    key: "Demurrage_amt",
     values: [""],
     label: "Demurrage amt	", type:'number',
   },
   {
-    key: "Despatch_amount	",
+    key: "Despatch_amount",
     values: [""],
     label: "Despatch amount	", type:'number',
   }, 
