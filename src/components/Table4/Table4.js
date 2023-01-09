@@ -34,7 +34,7 @@ class Table4 extends React.Component {
             {/* {this.props.form["portActivityTable"].toString()} */}
             {this.props.form["resultActivityTable"] ? (
               this.props.form["resultActivityTable"].map((res, i) => (
-                <tr>
+                <tr style={{ color: res.demarage ? "red" : "blue" }}>
                   {tableData.map((d) =>
                     d.key != "Action" ? (
                       <td>
@@ -44,6 +44,7 @@ class Table4 extends React.Component {
                           value={
                             this.props.form["resultActivityTable"][i][d.key]
                           }
+                          onChange={(e) => this.props.onchange(i, e)}
                           type={d.type}
                         />
                       </td>

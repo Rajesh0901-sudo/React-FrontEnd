@@ -5,8 +5,8 @@ export const tableData = [
   { label: "To date	", key: "toDate" },
   { label: "Time", key: "toDatetime" },
   { key: "duration", label: "Total duration" },
-  { label: "Deduction%" },
-  { label: "Deduction time" },
+  { key: "deduction", label: "Deduction%" },
+  { key: "deductionTime", label: "Deduction time" },
   { label: "Remark", key: "remark" },
   // {
   //   key: "Action",

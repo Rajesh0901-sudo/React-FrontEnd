@@ -114,7 +114,7 @@ function App(props) {
                               name={res.key + index}
                               type={res.type}
                               placeholder={res.label}
-                              onBlur={(e) => {
+                              onChange={(e) => {
                                 props.onchange(
                                   e,
                                   res.formula,
@@ -123,7 +123,6 @@ function App(props) {
                                   index
                                 );
                               }}
-                              
                             />
                           ) : (
                             <div className="action-div">
@@ -163,11 +162,13 @@ function App(props) {
                         <td className={res.key == "Action" ? "action-col" : ""}>
                           {res.key != "Action" ? (
                             <input
-                              value={ (res.key + index) in props.form ? props.form[res.key + index] : ""}   
-                              name={res.key + index}              
+                              key={res.key}
+                              value={props.form[res.key + index]}
+                              name={res.key + index}
                               type={res.type}
                               placeholder={res.label}
-                              onBlur={(e) => {
+                              onChange={(e) => {
+                                console.log(e);
                                 props.onchange(
                                   e,
                                   res.formula,
@@ -175,8 +176,7 @@ function App(props) {
                                   res.args,
                                   index
                                 );
-                                
-                              }} 
+                              }}
                               disabled={res.disabled}
                             />
                           ) : (
@@ -202,10 +202,9 @@ function App(props) {
               <p>Total</p>
               <div className="total-col">
                 <p className="total">{props.form["totalTime"]}</p>
-                <p className="total">{props.form["Used_time"]}</p> 
+                <p className="total">{props.form["Used_time"]}</p>
                 <p className="total">{props.form["Balance_time"]}</p>
                 <p className="total">{props.form["Deduction"]}</p>
-                
               </div>
             </div>
           </table>
