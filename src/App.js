@@ -228,6 +228,26 @@ function App() {
     setFormData(myNewForm);
   };
 
+  const onchangeTable4 = function (index, e) {
+    let myNewForm = { ...form };
+    myNewForm["resultActivityTable"][index][e.target.name] = e.target.value;
+    if (e.target.name == "deduction") {
+      myNewForm["resultActivityTable"][index]["deductionTime"] =
+        (moment
+          .duration(
+            myNewForm["resultActivityTable"][index]["duration"],
+            "dd:h:mm"
+          )
+          .asMilliseconds() *
+          Number(myNewForm["resultActivityTable"][index]["deduction"])) /
+        100;
+    }
+    myNewForm["resultActivityTable"][index]["deductionTime"] = moment
+      .duration(myNewForm["resultActivityTable"][index]["deductionTime"])
+      .format("D:H:m");
+    setFormData(myNewForm);
+  };
+
   const addRow = function (tableIndex) {
     let myNewForm = { ...form };
     let obj = {};
@@ -251,7 +271,7 @@ function App() {
             onchange={onChangeTable3}
             form={form}
           ></UiTransaction>
-          <Table4 form={form}></Table4>
+          <Table4 onchange={onchangeTable4} form={form}></Table4>
         </div>
         <ResultComponent form={form} />
       </div>

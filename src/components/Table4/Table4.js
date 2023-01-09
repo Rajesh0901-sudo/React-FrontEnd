@@ -44,6 +44,7 @@ class Table4 extends React.Component {
                           value={
                             this.props.form["resultActivityTable"][i][d.key]
                           }
+                          onChange={(e) => this.props.onchange(i, e)}
                           type={d.type}
                         />
                       </td>
