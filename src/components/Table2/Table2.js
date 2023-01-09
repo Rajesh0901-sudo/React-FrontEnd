@@ -123,6 +123,7 @@ function App(props) {
                                   index
                                 );
                               }}
+                              
                             />
                           ) : (
                             <div className="action-div">
@@ -162,8 +163,8 @@ function App(props) {
                         <td className={res.key == "Action" ? "action-col" : ""}>
                           {res.key != "Action" ? (
                             <input
-                              value={props.form[res.key + index]}
-                              name={res.key + index}
+                              value={ (res.key + index) in props.form ? props.form[res.key + index] : ""}   
+                              name={res.key + index}              
                               type={res.type}
                               placeholder={res.label}
                               onBlur={(e) => {
@@ -174,7 +175,9 @@ function App(props) {
                                   res.args,
                                   index
                                 );
-                              }}
+                                
+                              }} 
+                              disabled={res.disabled}
                             />
                           ) : (
                             <div className="action-div">
@@ -197,7 +200,13 @@ function App(props) {
             </tbody>
             <div className="totalDiv">
               <p>Total</p>
-              <div>{props.form["totalTime"]}</div>
+              <div className="total-col">
+                <p className="total">{props.form["totalTime"]}</p>
+                <p className="total">{props.form["Used_time"]}</p> 
+                <p className="total">{props.form["Balance_time"]}</p>
+                <p className="total">{props.form["Deduction"]}</p>
+                
+              </div>
             </div>
           </table>
         )}

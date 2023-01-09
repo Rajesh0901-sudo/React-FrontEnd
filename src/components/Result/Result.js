@@ -8,9 +8,9 @@ import { resultData } from "./Constants.js";
 const { Option } = Select;
 
 const options = [
-  { label: "Apple", value: "Apple" },
-  { label: "Pear", value: "Pear" },
-  { label: "Orange", value: "Orange" },
+  { label: "Standard", value: "Standard" },
+  { label: "Reversible", value: "Reversible" },
+  { label: "Average", value: "Average" },
 ];
 const laytimeMethodOptions = [
   { label: "Reversible", value: "Reversible" },
@@ -28,17 +28,14 @@ class ResultComponent extends React.Component {
     this.state = {
       result: {
         allowedTime: 0,
+        Used_time:0,
+        Balance_time:0,
       },
     };
   }
   componentWillReceiveProps() {
     const st = { ...this.state };
-    Array.from(Array(100)).map((d, i) => {
-      st["result"]["allowedTime"] = Number(this.props.form["allowedtime" + i])
-        ? st["result"]["allowedTime"] +
-          Number(this.props.form["allowedtime" + i])
-        : st["result"]["allowedTime"];
-    });
+    st["result"]["allowedTime"] = this.props.form["totalTime"];
     this.setState(st);
     console.log(st);
   }

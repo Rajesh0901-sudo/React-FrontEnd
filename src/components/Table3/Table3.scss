@@ -30,6 +30,11 @@
     td{
         height: 30px !important;
     }
+    td.check,th.check{
+           
+        width: 50px;
+        min-width: none;
+    }
 }
 
 .addRow{

@@ -9,11 +9,41 @@
     table{
         width: auto;
     }
-    td{
+    th,td{
         height: 30px;
         
         input{
             width: 138.1px;
+        }
+    }
+    p{
+        width: 138px;
+        height: 10px;
+    }
+
+    .totalDiv4{
+        position: absolute;
+        background: pink;
+        color: black;
+        height: 30px;
+        margin-top: 10px;
+        width: 785px;
+        margin-left: 190px;
+    
+        p{
+            display: inline-block;
+            top:7px;
+            max-width: 50px;
+            margin-left: 70px;
+            font-size: 18px;
+            opacity: 5;
+        }
+        .total-col{
+            display: inline;
+        }
+        .total{
+            margin-left:140px;
+            font-size: 16px;
         }
     }
 }
