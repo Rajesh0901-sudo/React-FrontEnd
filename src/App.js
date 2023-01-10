@@ -30,6 +30,16 @@ function App() {
       if (event.target.value != "") {
         let myNewForm = { ...form };
         myNewForm[event.target.name] = event.target.value;
+
+        if(event.target.name == 'demRatePerDay'){
+          myNewForm['demRatePerDay'] = event.target.value;
+          myNewForm['desRatePerDay'] = event.target.value/2;
+        }
+        if(event.target.name == 'desRatePerDay'){
+          myNewForm['demRatePerDay'] = event.target.value*2;
+          myNewForm['desRatePerDay'] = event.target.value;
+        }
+
         const t = [];
         console.log(myNewForm);
         //assuming max total activity entry is 100
@@ -228,7 +238,15 @@ function App() {
       myNewForm["resultActivityTable"][i]["duration"] =
         duration.format("D:H:m");
     });
+
     myNewForm["totalDurationResult"] = totalDuartion;
+
+    const usedTime = totalDuartion;
+    const allowedTime = myNewForm["totalTime"]*24*60*60*60;
+
+    myNewForm["Balance_days"] = allowedTime-usedTime;
+
+
     console.log(myNewForm);
     setFormData(myNewForm);
   };

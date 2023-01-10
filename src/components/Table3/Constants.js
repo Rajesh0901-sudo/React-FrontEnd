@@ -39,12 +39,12 @@ export const resultData = [
     label: "Previous claim ",
   },
   {
-    key: "Demurrage amt	",
+    key: "Demurrageamt",
     values: [""],
     label: "Demurrage amt	",
   },
   {
-    key: "Despatch amount	",
+    key: "Despatchamount",
     values: [""],
     label: "Despatch amount	",
   },

@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import {
   Table,
   Input,
@@ -19,6 +20,16 @@ import "./Table4.scss";
 import { tableData } from "./Constants.js";
 
 class Table4 extends React.Component {
+
+  convert(){
+
+    var x = this.props.form["totalDurationResult"];
+    var d = moment.duration(x, 'milliseconds');
+    var hours = Math.floor(d.asHours());
+    var mins = Math.floor(d.asMinutes()) - hours * 60;
+    return "hours:" + hours + " mins:" + mins;
+
+  }
   render() {
     return (
       <>
@@ -72,7 +83,7 @@ class Table4 extends React.Component {
               <div className="totalDiv4">
                 <p>Total</p>
                 <div className="total-col">
-                  <p className="total">{this.props.form["totalDurationResult"]}</p>
+                  <p className="total">{this.convert}</p>
                   <p className="total">jhb</p> 
                   
                 </div>

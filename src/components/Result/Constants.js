@@ -26,7 +26,7 @@ export const resultData = [
   {
     key: "Final_result",
     values: [""],
-    label: "Final Result ", type:'number',
+    label: "Final Result ", type:'text',
   },
   {
     key: "Demurrage_amt",

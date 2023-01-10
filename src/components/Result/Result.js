@@ -31,7 +31,7 @@ class ResultComponent extends React.Component {
         Used_days:0,
         Balance_days:0,
         Previous_claim:0,
-        Final_result:0,
+        Final_result:'',
         Demurrage_amt:0,
         Despatch_amount:0,
         Other_tax:0,
@@ -39,23 +39,65 @@ class ResultComponent extends React.Component {
       },
     };
   }
-  onResultChange(e){
-    if(e.target.name){
+  onResultClick(e){
+   
+    if(e.target.name == "Previous_claim" || e.target.name == "Other_tax" ){   
       const st = { ...this.state };
       st["result"][e.target.name] = e.target.value;
+      this.setState(st);
     }
-    console.log(e.target.value);
+    const st = { ...this.state };
+    if(st['result']["Balance_days"]){
+      if(Number(st['result']["Balance_days"]) < 0){
+        st['result']["Demurrage_amt"] = 'Demerage';
+      }
+      else{
+        st['result']["Final_result"] = 'Despatch';
+      }
+    }
+    st['result']["Demurrage_amt"] = this.props["demRatePerDay"] * st['result']["Balance_days"];
+    st['result']["Despatch_amount"] = this.props["desRatePerDay"] * st['result']["Balance_days"];
+    st['result']["Final_Net_amount"] =Number(st['result']["Other_tax"]) + Number(st['result']["Previous_claim"]);
+
+    if(Number(st['result']["Balance_days"]) < 0){
+      st['result']["Final_result"] = 'Demerage';
+      console.log("hii");
+      console.log(Number(st['result']["Balance_days"]));
+      this.setState(st);
+    }
+    else{
+      st['result']["Final_result"] = 'Despatch';
+      console.log('hello');
+      console.log(Number(st['result']["Balance_days"]));
+      this.setState(st);
+    }
+    
+    this.setState(st);
+    
 
   }
   componentWillReceiveProps() {
     const st = { ...this.state };
     st["result"]["allowedTime"] = this.props.form["totalTime"];
-    st["result"]["Used_days"] = this.props.form["duration"];
+    st["result"]["Used_days"] = this.props.form["totalDurationResult"]/(24*60*60*60);
+    console.log(this.props.form["totalDurationResult"]);
     st["result"]["Balance_days"] = this.props.form["Balance_days"];
     st["result"]["Final_result"] =  this.props.form["Final_result"];
-
     this.setState(st);
-    console.log(st);
+
+    let stt = { ...this.state };
+    if(Number(stt['result']["Balance_days"]) < 0){
+      stt['result']["Final_result"] = 'Demerage';
+      console.log("hii");
+      this.setState(stt);
+    }
+    else{
+      st['result']["Final_result"] = 'Despatch';
+      console.log('hello');
+      this.setState(stt);
+    }
+
+    console.log(stt);
   }
   render() {
     return (
